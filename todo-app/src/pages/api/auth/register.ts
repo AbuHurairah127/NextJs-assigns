@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "./userModel/Model";
+import connectToMongoDB from "lib/db";
 let JWT_SECRET_KEY: string;
 if (typeof process.env.SECRET_KEY === "string") {
   JWT_SECRET_KEY = process.env.SECRET_KEY;
@@ -26,8 +27,7 @@ const register = async (
   res: NextApiResponse<Response | string>
 ) => {
   try {
-    /* Checking if the request body has any errors. If it does, it will return a 400 status code with the
-    errors. */
+    connectToMongoDB();
 
     /* This is checking if the email address already exists in the database. If it does, it will return a
       400 status code with the message "Sorry a user with this email address already exists." */

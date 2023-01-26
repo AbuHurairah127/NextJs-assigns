@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import User from "./userModel/Model";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { Response } from "./registerDoctor";
+import connectToMongoDB from "lib/db";
+import { Response } from "./register";
 let JWT_SECRET_KEY: string;
 if (typeof process.env.SECRET_KEY === "string") {
   JWT_SECRET_KEY = process.env.SECRET_KEY;
@@ -12,6 +13,7 @@ const login = async (
   res: NextApiResponse<Response | string>
 ) => {
   try {
+    connectToMongoDB();
     const { email, password } = req.body;
     let user = await User.findOne({ email });
     if (!user) {

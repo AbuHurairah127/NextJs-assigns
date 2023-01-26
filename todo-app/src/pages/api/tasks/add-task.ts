@@ -1,9 +1,11 @@
+import connectToMongoDB from "lib/db";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
 import Task from "./model/taskModel";
 
 const addTask = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    connectToMongoDB();
     if (typeof req.query.ObjectId === "string") {
       const task = await Task.create({
         task: req.body.task,

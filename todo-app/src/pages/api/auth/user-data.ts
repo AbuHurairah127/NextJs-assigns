@@ -1,3 +1,4 @@
+import connectToMongoDB from "lib/db";
 import { NextApiResponse, NextApiRequest } from "next";
 import User from "./userModel/Model";
 export interface IGetUserAuthInfoRequest extends NextApiRequest {
@@ -5,6 +6,7 @@ export interface IGetUserAuthInfoRequest extends NextApiRequest {
 }
 const userData = async (req: IGetUserAuthInfoRequest, res: NextApiResponse) => {
   try {
+    connectToMongoDB();
     const userId: string | undefined = req.user;
     const user = await User.findById(userId).select("-password");
     res.status(200).json({ user });
