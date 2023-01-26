@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
-import { IGetUserAuthInfoRequest } from "../auth/userData";
+import { IGetUserAuthInfoRequest } from "../auth/user-data";
 const JWT_SECRET_KEY: string | undefined = process.env.SECRET_KEY;
 
 export interface Data extends JwtPayload {
@@ -14,11 +14,11 @@ export const authUser = (
 ) => {
   try {
     let data: JwtPayload | string;
-    const token: string | undefined = req.headers["token"];
+    const token: string | string[] | undefined = req.headers["token"];
     if (!token) {
       res.status(401).send("Access Denied");
     } else {
-      if (typeof JWT_SECRET_KEY === "string") {
+      if (typeof JWT_SECRET_KEY === "string" && typeof token === "string") {
         data = jwt.verify(token, JWT_SECRET_KEY) as JwtPayload;
         req.user = data.user.id;
       }
