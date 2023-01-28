@@ -1,4 +1,4 @@
-import connectToMongoDB from "lib/db";
+import connectToMongoDB from "@/lib/db";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
 import Task from "./model/taskModel";

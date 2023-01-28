@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "./userModel/Model";
-import connectToMongoDB from "lib/db";
+import connectToMongoDB from "@/lib/db";
 let JWT_SECRET_KEY: string;
 if (typeof process.env.SECRET_KEY === "string") {
   JWT_SECRET_KEY = process.env.SECRET_KEY;

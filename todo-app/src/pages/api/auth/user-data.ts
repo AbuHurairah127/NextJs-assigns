@@ -1,4 +1,4 @@
-import connectToMongoDB from "lib/db";
+import connectToMongoDB from "@/lib/db";
 import { NextApiResponse, NextApiRequest } from "next";
 import User from "./userModel/Model";
 export interface IGetUserAuthInfoRequest extends NextApiRequest {

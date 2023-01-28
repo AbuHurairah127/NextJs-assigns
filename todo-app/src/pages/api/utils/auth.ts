@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import connectToMongoDB from "lib/db";
+import connectToMongoDB from "@/lib/db";
 import { NextApiRequest, NextApiResponse } from "next";
 import { IGetUserAuthInfoRequest } from "../auth/user-data";
 const JWT_SECRET_KEY: string | undefined = process.env.SECRET_KEY;
