@@ -9,5 +9,5 @@ const taskSchema = new Schema(
   },
   { timestamps: true }
 );
-const Task = mongoose.model("Task", taskSchema);
-export default Task;
+const task = mongoose.model("task", taskSchema);
+export default task;

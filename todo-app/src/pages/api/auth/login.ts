@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import User from "./userModel/Model";
+import UserModel from "./userModel/Model";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import connectToMongoDB from "@/lib/db";
@@ -15,7 +15,7 @@ const login = async (
   try {
     connectToMongoDB();
     const { email, password } = req.body;
-    let user = await User.findOne({ email });
+    let user = await UserModel.findOne({ email });
     if (!user) {
       return res
         .status(400)

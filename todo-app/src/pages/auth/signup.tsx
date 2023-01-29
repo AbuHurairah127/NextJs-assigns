@@ -1,7 +1,11 @@
 import { FormControl, FormLabel, Input, Stack, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 const SignUp = () => {
+  axios.defaults.withCredentials = true;
+  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,10 +21,28 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     // add your login logic here
     console.log(formData);
+    const options = {
+      method: "POST",
+      url: "api/auth/register",
+      body: formData,
+    };
+    try {
+      const response = await axios.post("/api/auth/register", formData);
+      if (response.status === 200) {
+        document.cookie = `user-token =${response.data.authToken}`;
+        console.log(document.cookie);
+
+        router.push("/");
+      }
+    } catch (error) {
+      console.log("Error in frontend", error);
+      //
+    }
+    console.log("done with the api request");
   };
 
   return (

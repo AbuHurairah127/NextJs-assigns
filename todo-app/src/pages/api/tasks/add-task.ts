@@ -12,6 +12,8 @@ const addTask = async (req: NextApiRequest, res: NextApiResponse) => {
         description: req.body.description,
         createdBy: new mongoose.Types.ObjectId(req.query.ObjectId),
       });
+      console.log(task);
+
       res.status(200).json(task);
     }
   } catch (error) {

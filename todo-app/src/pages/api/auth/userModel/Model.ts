@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-export type Medicine = {
-  name: string;
-  durations: number;
-  times: number;
-  In: string;
-};
+
 const userSchema = new Schema(
   {
     firstName: { type: String, required: true },
@@ -16,5 +11,5 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
-const User = mongoose.model("User", userSchema);
-export default User;
+const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
+export default UserModel;
