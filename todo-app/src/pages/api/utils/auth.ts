@@ -1,9 +1,9 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import connectToMongoDB from "@/lib/db";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 import { IGetUserAuthInfoRequest } from "../auth/user-data";
 const JWT_SECRET_KEY: string | undefined = process.env.SECRET_KEY;
-
+import cookie, { parse } from "cookie";
 export interface Data extends JwtPayload {
   user: {
     id: string;
@@ -15,8 +15,10 @@ export const authUser = (
 ) => {
   try {
     connectToMongoDB();
+    const cookies = parse(req.headers.cookie || "");
+    const token = cookies.authToken;
+
     let data: JwtPayload | string;
-    const token: string | string[] | undefined = req.headers["token"];
     if (!token) {
       res.status(401).send("Access Denied");
     } else {

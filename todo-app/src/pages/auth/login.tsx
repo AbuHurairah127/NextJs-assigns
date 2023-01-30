@@ -17,7 +17,6 @@ const Login: React.FC = () => {
       if (response.status === 200) {
         router.push("/");
       }
-      console.log("done with api");
     } catch (error) {
       console.error(error);
     }

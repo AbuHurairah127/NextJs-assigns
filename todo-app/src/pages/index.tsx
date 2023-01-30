@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -26,12 +26,14 @@ const todosList: Todo[] = [
 ];
 
 const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
-  const [todos, setTodos] = useState(todosList);
+  useEffect(() => {
+    axios.get("api/auth/user-data");
+  }, []);
 
+  const [todos, setTodos] = useState(todosList);
   const handleAddTodo = (task: string) => {
     setTodos([...todos, { id: Date.now(), task, isCompleted: false }]);
   };
-
   const handleRemoveTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -45,7 +47,9 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
   };
   const logoutHandler = async () => {
     const response = await axios.delete("/api/auth/logout-user");
-    Router.push("/auth/login");
+    if (response.status === 200) {
+      Router.push("/auth/login");
+    }
   };
   return (
     <Box>

@@ -34,7 +34,6 @@ const SignUp: React.FC = () => {
       console.log("Error in frontend", error);
       //
     }
-    console.log("done with the api request");
   };
 
   return (
