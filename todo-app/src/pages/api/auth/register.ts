@@ -67,7 +67,8 @@ const register = async (
       user: { id: newUser.id },
     };
     const authToken: string = jwt.sign(data, JWT_SECRET_KEY);
-    const serialized = serialize("authToken", authToken, {
+    // Setting the cookies for the user of "authToken"
+    const serialized: string | undefined = serialize("authToken", authToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
       sameSite: "strict",

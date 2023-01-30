@@ -24,18 +24,10 @@ const SignUp = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     // add your login logic here
-    console.log(formData);
-    const options = {
-      method: "POST",
-      url: "api/auth/register",
-      body: formData,
-    };
+
     try {
       const response = await axios.post("/api/auth/register", formData);
       if (response.status === 200) {
-        document.cookie = `user-token =${response.data.authToken}`;
-        console.log(document.cookie);
-
         router.push("/");
       }
     } catch (error) {

@@ -8,10 +8,13 @@ const middleware = async (req: NextRequest) => {
   const verifiedToken =
     token && (await verifyAuth(token).catch((err) => console.log(err)));
 
-  if (req.nextUrl.pathname.startsWith("/auth") && !verifiedToken) {
+  if (req.nextUrl.pathname.startsWith("/auth/login") && !verifiedToken) {
     return NextResponse.next();
   }
-  if (req.url.includes("/auth") && verifiedToken) {
+  if (
+    req.url.includes("/auth/login") ||
+    (req.url.includes("/auth/signup") && verifiedToken)
+  ) {
     return NextResponse.redirect(new URL("/", req.url));
   }
   if (!verifiedToken) {
@@ -26,5 +29,5 @@ const middleware = async (req: NextRequest) => {
 };
 export default middleware;
 export const config = {
-  matcher: ["/", "/auth"],
+  matcher: ["/", "/auth/login"],
 };

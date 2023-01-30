@@ -5,26 +5,26 @@ import Link from "next/link";
 
 // const router = useRouter();
 interface LoginProps {
-  onSubmit: (username: string, password: string) => void;
+  onSubmit: (email: string, password: string) => void;
 }
 const Login: React.FC<LoginProps> = ({ onSubmit }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(username, password);
+    onSubmit(email, password);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <FormControl>
-        <FormLabel htmlFor="username">Username</FormLabel>
+        <FormLabel htmlFor="email">Username</FormLabel>
         <Input
-          id="username"
+          id="email"
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
       <FormControl>

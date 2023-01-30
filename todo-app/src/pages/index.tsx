@@ -10,6 +10,8 @@ import {
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";
+import axios from "axios";
+import Router from "next/router";
 interface Todo {
   id: number;
   task: string;
@@ -42,12 +44,18 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       )
     );
   };
-
+  const logoutHandler = async () => {
+    const response = await axios.delete("/api/auth/logout-user");
+    Router.push("/auth/login");
+  };
   return (
     <Box>
       <Text fontSize={20} textAlign={"center"}>
         To-Do
       </Text>
+      <Button type="button" onClick={logoutHandler}>
+        Logout
+      </Button>
       <Box>
         <Input type="text" placeholder="Add Todo" />
         <Button onClick={() => handleAddTodo("Add Todo")}>Add Todo</Button>
