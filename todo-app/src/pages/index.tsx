@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import Router from "next/router";
 interface Todo {
-  id: number;
+  _id: string;
   task: string;
   isCompleted: boolean;
 }
@@ -20,28 +20,49 @@ interface TodoProps {
   initialTodos: Todo[];
 }
 const todosList: Todo[] = [
-  { id: 1, task: "Clean the house", isCompleted: false },
-  { id: 2, task: "Buy groceries", isCompleted: true },
-  { id: 3, task: "Wash the car", isCompleted: false },
+  { _id: "1", task: "Clean the house", isCompleted: false },
+  { _id: "2", task: "Buy groceries", isCompleted: true },
+  { _id: "3", task: "Wash the car", isCompleted: false },
 ];
-
 const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
+  const [userData, setUserData] = useState<any>(null);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
   useEffect(() => {
-    axios.get("api/auth/user-data");
+    axios.get("api/auth/user-data").then((response) => {
+      setUserData(response.data.user);
+      axios
+        .get("api/tasks/read-all-task", {
+          params: {
+            userId: response.data.user._id,
+          },
+        })
+        .then((response) => {
+          setTodos(response.data);
+        });
+    });
   }, []);
 
-  const [todos, setTodos] = useState(todosList);
-  const handleAddTodo = (task: string) => {
-    setTodos([...todos, { id: Date.now(), task, isCompleted: false }]);
+  const handleAddTodo = async (task: string) => {
+    const response = await axios.post("api/tasks/add-task", {
+      createdBy: userData._id,
+      task,
+      isCompleted: false,
+    });
+    if (response.status === 200) {
+      console.log(response.data);
+
+      setTodos([...todos, response.data]);
+    }
   };
-  const handleRemoveTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const handleRemoveTodo = (id: string) => {
+    setTodos(todos.filter((todo) => todo._id !== id));
   };
 
-  const handleToggleComplete = (id: number) => {
+  const handleToggleComplete = (id: string) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        todo._id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       )
     );
   };
@@ -54,7 +75,8 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
   return (
     <Box>
       <Text fontSize={20} textAlign={"center"}>
-        To-Do
+        To-Dos of
+        {" " + userData?.userName}
       </Text>
       <Button type="button" onClick={logoutHandler}>
         Logout
@@ -69,16 +91,16 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       <Box display={"flex"} justifyContent={"center"}>
         <UnorderedList>
           {todos.map((todo) => (
-            <ListItem key={todo.id}>
+            <ListItem key={todo._id}>
               <Text
                 style={{
                   textDecoration: todo.isCompleted ? "line-through" : "",
                 }}
               >
-                {todo.task}
+                {todo.task + " " + todo._id}
               </Text>
-              <Button onClick={() => handleRemoveTodo(todo.id)}>Remove</Button>
-              <Button onClick={() => handleToggleComplete(todo.id)}>
+              <Button onClick={() => handleRemoveTodo(todo._id)}>Remove</Button>
+              <Button onClick={() => handleToggleComplete(todo._id)}>
                 {todo.isCompleted ? "Mark Incomplete" : "Mark Complete"}
               </Button>
             </ListItem>
