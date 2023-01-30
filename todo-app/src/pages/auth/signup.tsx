@@ -1,9 +1,9 @@
 import { FormControl, FormLabel, Input, Stack, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-const SignUp = () => {
+const SignUp: React.FC = () => {
   axios.defaults.withCredentials = true;
   const router = useRouter();
   const [formData, setFormData] = useState({

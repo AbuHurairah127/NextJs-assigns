@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import axios from "axios";
 
-// const router = useRouter();
-interface LoginProps {
-  onSubmit: (email: string, password: string) => void;
-}
-const Login: React.FC<LoginProps> = ({ onSubmit }) => {
+const Login: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(email, password);
+    try {
+      const response = await axios.get("/api/auth/login", {
+        params: { email: email, password: password },
+      });
+      if (response.status === 200) {
+        router.push("/");
+      }
+      console.log("done with api");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
