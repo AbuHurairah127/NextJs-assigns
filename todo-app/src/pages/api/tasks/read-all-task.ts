@@ -5,7 +5,6 @@ import Task from "./model/taskModel";
 const readAllTasks = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     connectToMongoDB();
-    console.log(req.query.userId);
     const tasks = await Task.find({ createdBy: req.query.userId });
     res.status(200).json(tasks);
   } catch (error) {

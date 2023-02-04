@@ -9,8 +9,7 @@ const taskSchema = new Schema(
   },
   { timestamps: true }
 );
-
-// const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
-// export default UserModel;
 const Task = mongoose.models.Task || mongoose.model("Task", taskSchema);
+
+Task.watch().on("change", (data) => console.log(data));
 export default Task;

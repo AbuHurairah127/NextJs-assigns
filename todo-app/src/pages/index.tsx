@@ -1,36 +1,38 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactEventHandler } from "react";
 import {
   Box,
   Button,
   Input,
   Text,
-  List,
+  Heading,
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Router from "next/router";
+import Navbar, { UserData } from "@/components/navbar/navbar";
 interface Todo {
   _id: string;
+  createdBy: string;
   task: string;
   isCompleted: boolean;
 }
 interface TodoProps {
   initialTodos: Todo[];
 }
-const todosList: Todo[] = [
-  { _id: "1", task: "Clean the house", isCompleted: false },
-  { _id: "2", task: "Buy groceries", isCompleted: true },
-  { _id: "3", task: "Wash the car", isCompleted: false },
-];
+
 const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
-  const [userData, setUserData] = useState<any>(null);
+  const [todo, setTodo] = useState("");
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     axios.get("api/auth/user-data").then((response) => {
       setUserData(response.data.user);
+      console.log(response.data.user);
+
       axios
         .get("api/tasks/read-all-task", {
           params: {
@@ -43,22 +45,33 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
     });
   }, []);
 
-  const handleAddTodo = async (task: string) => {
-    const response = await axios.post("api/tasks/add-task", {
-      createdBy: userData._id,
-      task,
-      isCompleted: false,
-    });
-    if (response.status === 200) {
-      console.log(response.data);
-
-      setTodos([...todos, response.data]);
+  const handleAddTodo = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      setLoader(true);
+      if (!userData) return;
+      const newTodo: {
+        createdBy: string;
+        task: string;
+        isCompleted: boolean;
+      } = {
+        createdBy: userData._id,
+        task: (e.target as HTMLInputElement).value,
+        isCompleted: false,
+      };
+      const response = await axios.post("api/tasks/add-task", newTodo);
+      if (response.status === 200) {
+        setTodos([...todos, response.data]);
+      }
+    } catch (error: any) {
+      alert(error.response.data);
+    } finally {
+      setLoader(false);
     }
   };
   const handleRemoveTodo = (id: string) => {
     setTodos(todos.filter((todo) => todo._id !== id));
   };
-
   const handleToggleComplete = (id: string) => {
     setTodos(
       todos.map((todo) =>
@@ -74,17 +87,36 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
   };
   return (
     <Box>
-      <Text fontSize={20} textAlign={"center"}>
-        To-Dos of
-        {" " + userData?.userName}
-      </Text>
-      <Button type="button" onClick={logoutHandler}>
-        Logout
-      </Button>
-      <Box>
-        <Input type="text" placeholder="Add Todo" />
-        <Button onClick={() => handleAddTodo("Add Todo")}>Add Todo</Button>
-      </Box>
+      <Navbar userData={userData} logoutHandler={logoutHandler} />
+      <form onSubmit={(e) => handleAddTodo(e)}>
+        <Heading textAlign={"center"} marginTop={5} color={"#023047"}>
+          Add a new Todo
+        </Heading>
+        <Box
+          display={"flex"}
+          margin={8}
+          padding={5}
+          borderWidth={1}
+          borderStyle={"solid"}
+          borderColor={"#023047"}
+          borderRadius={8}
+        >
+          <Input
+            type="text"
+            value={todo}
+            onChange={(e) => setTodo(e.target.value)}
+            placeholder="Add Todo"
+          />
+          <Button
+            type="submit"
+            colorScheme={"linkedin"}
+            marginLeft={4}
+            disabled={!loader}
+          >
+            {!loader ? "Add Todo" : "Adding A Todo"}
+          </Button>
+        </Box>
+      </form>
       <Text fontSize={20} textAlign={"center"}>
         My To-Do List
       </Text>
