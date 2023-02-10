@@ -4,14 +4,12 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import coding from "./../assets/97639-coding.json";
 import Hero from "@/views/hero/Hero";
-import ScrollTrigger from "react-scroll-trigger";
 import InfoCard from "@/components/infoCard/InfoCard";
 import teacher from "./../assets/teachers.png";
 import student from "./../assets/students.png";
 import currentClass from "./../assets/classrooms.png";
 import course from "./../assets/courses.png";
 export default function Home() {
-  const [counterOn, setCounterOn] = useState<Boolean>(false);
   return (
     <main>
       <Hero />
@@ -57,7 +55,7 @@ export default function Home() {
           <Lottie animationData={coding} loop={true} />
         </Box>
       </Flex>
-      <Box bgColor={"gray.100"} padding={10}>
+      <Box bgColor={"gray.100"} paddingX={5} paddingY={10}>
         <Heading textAlign={"center"}>We Are Proud To Tell You</Heading>
         <Text textAlign={"center"} paddingX={"10vw"}>
           Our community, teachers, and students are all essential components of
@@ -66,43 +64,42 @@ export default function Home() {
         </Text>
         <Box>
           <Box>
-            <ScrollTrigger
-              onEnter={() => setCounterOn(true)}
-              onExit={() => setCounterOn(false)}
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+              flexWrap={"wrap"}
+              marginBottom={35}
+              marginTop={55}
             >
-              {counterOn && (
-                <Box display={"flex"} justifyContent={"space-between"}>
-                  <InfoCard
-                    headingText="Currently Enrolled Students"
-                    ImageSrc={teacher}
-                    count={30}
-                    countDuration={2}
-                    bgColor={"blue.400"}
-                  />
-                  <InfoCard
-                    headingText="Currently Enrolled Students"
-                    ImageSrc={student}
-                    count={3500}
-                    countDuration={5}
-                    bgColor={"blue.400"}
-                  />
-                  <InfoCard
-                    headingText="Currently Enrolled Students"
-                    ImageSrc={currentClass}
-                    count={7}
-                    countDuration={0.5}
-                    bgColor={"blue.400"}
-                  />
-                  <InfoCard
-                    headingText="Currently Enrolled Students"
-                    ImageSrc={course}
-                    count={6}
-                    countDuration={0.5}
-                    bgColor={"blue.400"}
-                  />
-                </Box>
-              )}
-            </ScrollTrigger>
+              <InfoCard
+                headingText="Our Skilled Teachers"
+                ImageSrc={teacher}
+                count={30}
+                countDuration={2}
+                bgColor={"#2E6AF0"}
+              />
+              <InfoCard
+                headingText="Currently Enrolled Students"
+                ImageSrc={student}
+                count={3500}
+                countDuration={5}
+                bgColor={"#DD256F"}
+              />
+              <InfoCard
+                headingText="Currently Enrolled Classes"
+                ImageSrc={currentClass}
+                count={7}
+                countDuration={0.5}
+                bgColor={"#8008E6"}
+              />
+              <InfoCard
+                headingText="Currently Available Courses"
+                ImageSrc={course}
+                count={6}
+                countDuration={0.5}
+                bgColor={"#0DAE75"}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
