@@ -206,6 +206,16 @@ export default function Home() {
             plan is in place but we will operate on this in stealth mode till
             D-Day
           </Text>
+          <Box width={"75vw"} margin={"auto"}>
+            <iframe
+              src="https://www.youtube.com/embed/PwLzOxLe4zc"
+              style={{
+                width: "100%",
+                height: "100%",
+                aspectRatio: "16/9",
+              }}
+            ></iframe>
+          </Box>
         </Box>
       </Box>
     </main>

@@ -19,17 +19,20 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import panaverse_transparent_small from "./../../assets/panaverse_transparent_small.png";
-const Links = ["Dashboard", "Projects", "Team"];
+import logo from "./../../assets/red-p-logo-text_dao_croped.png";
+const Links = ["About", "Leaders", "Program Structure"];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
     px={2}
     py={1}
-    rounded={"md"}
+    transition="all"
+    transitionDuration={"0.3s"}
     _hover={{
       textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
+      textColor: "red.500",
+      fontWeight: 700,
+      scale: "125%",
     }}
     href={"#"}
   >
@@ -58,11 +61,7 @@ export default function Simple() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Image
-                src={panaverse_transparent_small}
-                alt={"Logo"}
-                height={100}
-              ></Image>
+              <Image src={logo} alt={"Logo"} height={60}></Image>
             </Box>
             <HStack
               as={"nav"}
@@ -102,22 +101,13 @@ export default function Simple() {
               <DrawerCloseButton />
               Basic Drawer
             </DrawerHeader>
-            <DrawerBody>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-        {/* {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
+            <DrawerBody style={{ display: "flex", flexDirection: "column" }}>
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
-            </Stack>
-          </Box>
-        ) : null} */}
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Box>
     </>
   );
