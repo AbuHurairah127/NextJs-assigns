@@ -20,10 +20,18 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "./../../assets/red-p-logo-text_dao_croped.png";
-const Links = ["About", "Leaders", "Program Structure"];
-
-const NavLink = ({ children }: { children: ReactNode }) => (
+const Links = [
+  { name: "About", path: "/about" },
+  { name: "Leaders", path: "/leaders" },
+  { name: "Program Structure", path: "programStructure" },
+];
+type Props = {
+  children: ReactNode;
+  path: string;
+};
+const NavLink = (props: Props) => (
   <Link
+    as={NextLink}
     px={2}
     py={1}
     transition="all"
@@ -34,9 +42,9 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       fontWeight: 700,
       scale: "125%",
     }}
-    href={"#"}
+    href={props.path}
   >
-    {children}
+    {props.children}
   </Link>
 );
 
@@ -61,15 +69,19 @@ export default function Simple() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Image src={logo} alt={"Logo"} height={60}></Image>
+              <NavLink path={"/"}>
+                <Image src={logo} alt={"Logo"} height={60}></Image>
+              </NavLink>
             </Box>
             <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Links.map((link, i) => (
+                <NavLink key={i} path={link.path}>
+                  {link.name}
+                </NavLink>
               ))}
             </HStack>
           </HStack>
@@ -102,8 +114,10 @@ export default function Simple() {
               Basic Drawer
             </DrawerHeader>
             <DrawerBody style={{ display: "flex", flexDirection: "column" }}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Links.map((link, i) => (
+                <NavLink key={i} path={link.path}>
+                  {link.name}
+                </NavLink>
               ))}
             </DrawerBody>
           </DrawerContent>
