@@ -10,23 +10,10 @@ import student from "./../assets/students.png";
 import currentClass from "./../assets/classrooms.png";
 import course from "./../assets/courses.png";
 import FaculityCard from "@/components/facultyCard/FaculityCard";
-import ziaKhan from "./../assets/ziaKhan.png";
-import daniyalNaghori from "./../assets/Daniyal-Naghori.png";
+
 import Link from "next/link";
 
 export default function Home() {
-  const facultyMembers = [
-    {
-      name: "Zia Khan",
-      Desc: "Web 3, DeFi, Cloud and Metaverse Architect | Tokenomist and Metanomist | CEO Panacloud | Volunteer COO Presidential Initiative for AI and Computing",
-      Img: ziaKhan,
-    },
-    {
-      name: "Daniyal Naghori",
-      Desc: "CEO at PIAIC, CTO at TravelclubIQ and Founder, Director, CEO at ProStack Ltd",
-      Img: daniyalNaghori,
-    },
-  ];
   return (
     <main>
       <Box overflowX={"hidden"}>
