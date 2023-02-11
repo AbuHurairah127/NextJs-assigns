@@ -12,6 +12,7 @@ import course from "./../assets/courses.png";
 import FaculityCard from "@/components/facultyCard/FaculityCard";
 import ziaKhan from "./../assets/ziaKhan.png";
 import daniyalNaghori from "./../assets/Daniyal-Naghori.png";
+import Link from "next/link";
 
 export default function Home() {
   const facultyMembers = [
@@ -186,41 +187,24 @@ export default function Home() {
             borderRadius={10}
             boxShadow="2xl"
           >
-            Pakistan Export Projection Through Software Services: <br />
-            &emsp;&emsp;If a developer earns $30 per hour, for 40 hours a week
-            he/she will make: $30 x 40 Hrs/Wk x 52 Wks = $62,400/Year <br /> How
-            many developers required to increase exports by $1 Billion Dollars:
-            $1,000,000,000 Annual Exports / $62,400 Year Export Per Developer =
-            16,000 Developers Can Generate $1 Billion Exports Our Dollar Deficit
-            is $20 Billion we need 16,000 x 20 = 360,000 Services Developers
-            Need to be Trained to Fill the Dollar Gap through Software Services
-            Exports
-          </Text>
-          <Text
-            border={2}
-            width={"75vw"}
-            marginX="auto"
-            marginY={"40px"}
-            fontSize={18}
-            padding={5}
-            borderRadius={10}
-            boxShadow="2xl"
-          >
-            Projections For Pakistan Exports Through Software Micro
-            Products/Components (Full Stack Web 3 Templates + 3D Metaverse
-            Templates, Models, and Avatars + Serverless APIs): If a developer
-            can create one Micro Products/Components in 3 months it means 4 Per
-            Year. In 3 Years each developer will be selling 12 items. In each
-            micro product/component is sold one per day it means he/she is
-            selling: 12 micro products x 1 per day x 365 days = 4,380 micro
-            products sold per year per developer If each product is sold for $50
-            dollars it means a revenue of: 4,380 Micro Products x $50 Selling
-            Price = $219,000 per year per developer (after three years)
-            $1,000,000,000 Annual Exports / $219,000 Per Year Export Per
-            Developer = 4,600 Micro Product Developers Can Generate $1 Billion
-            Exports Our Dollar Deficit is $20 Billion we need 4,600 x 20 =
-            91,000 Micro Product Developers Need to be Trained to Fill the
-            Dollar Gap through Software Micro Product Exports
+            The Battle of Pakistan Begins <br /> We are not rats but warriors we
+            will not leave a sinking ship but fight till the last breadth. Those
+            with us stand firm our time has arrived and those who are afraid and
+            weak step out of the way. The plan has three phases/stages: <br />{" "}
+            Phase 1: In phase one we will cover the&nbsp;
+            <Link
+              href={"https://rb.gy/vmrgvy"}
+              style={{ color: "blue", textDecoration: "underline" }}
+            >
+              Syllabus
+            </Link>{" "}
+            <br />
+            <br />
+            Phase 2: We will rebuild the Pakistan Economy using Web 3
+            technologies. A detailed plan has been developed and will be
+            disclosed when we have completed phase 1. <br /> <br /> Phase 3: A
+            plan is in place but we will operate on this in stealth mode till
+            D-Day
           </Text>
         </Box>
       </Box>
