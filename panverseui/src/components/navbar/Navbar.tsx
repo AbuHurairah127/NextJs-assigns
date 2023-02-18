@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import CustomButton from "./../button/Button";
+import { motion } from "framer-motion";
 import {
   Box,
   Flex,
@@ -53,7 +53,12 @@ export default function Simple() {
 
   return (
     <>
-      <Box px={4}>
+      <Box
+        px={4}
+        as={motion.div}
+        initial={{ translateY: -60 }}
+        animate={{ translateY: 0 }}
+      >
         <Flex
           h={16}
           alignItems={"center"}
