@@ -1,6 +1,12 @@
 "use client";
-import { useState } from "react";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  chakra,
+  shouldForwardProp,
+} from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import coding from "./../assets/97639-coding.json";
 import Hero from "@/views/hero/Hero";
@@ -9,11 +15,18 @@ import teacher from "./../assets/teachers.png";
 import student from "./../assets/students.png";
 import currentClass from "./../assets/classrooms.png";
 import course from "./../assets/courses.png";
-import FaculityCard from "@/components/facultyCard/FaculityCard";
-
+import { motion, isValidMotionProp, useScroll } from "framer-motion";
 import Link from "next/link";
+const ChakraBox = chakra(motion.div, {
+  /**
+   * Allow motion props and non-Chakra props to be forwarded.
+   */
+  shouldForwardProp: (prop) =>
+    isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
   return (
     <main>
       <Box overflowX={"hidden"}>
@@ -24,12 +37,15 @@ export default function Home() {
           flexDirection={{ base: "column", md: "row" }}
         >
           <Box
+            as={motion.div}
             width={["100vw", "100vw", "50vw", "50vw"]}
             display={"flex"}
             justifyContent="center"
             alignItems={"center"}
             flexDirection={"column"}
             marginY={35}
+            initial={{ translateX: "-100vw" }}
+            animate={{ translateX: 0 }}
           >
             <Heading marginX={{ base: 10 }} marginY={{ base: 4 }}>
               Start Your Developer Journey in the Web 3.0 and Virtual Universe
@@ -51,6 +67,7 @@ export default function Home() {
             </Text>
           </Box>
           <Box
+            as={motion.div}
             display={"flex"}
             justifyContent="center"
             alignItems={"center"}
@@ -58,14 +75,26 @@ export default function Home() {
             paddingX={10}
             flexDirection="column"
             marginBottom={10}
+            initial={{ opacity: 0.6, scale: 0 }}
+            animate={{ opacity: 1, scale: 1.1 }}
           >
             <Lottie animationData={coding} loop={true} />
             <Box
+              as={motion.div}
               width={220}
               alignSelf={{ lg: "flex-start" }}
               boxShadow={"2xl"}
               padding={3}
               borderRadius={8}
+              initial={{ scale: 0 }}
+              animate={{ rotate: 360, scale: 1 }}
+              // @ts-ignore no problem in operation, although type error appears.
+              transition={{
+                duration: 3,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
             >
               <Text>
                 {" "}
@@ -84,38 +113,37 @@ export default function Home() {
           <Box>
             <Box>
               <Box
+                as={motion.div}
                 display={"flex"}
                 justifyContent={"space-between"}
                 flexWrap={"wrap"}
                 marginBottom={35}
                 marginTop={55}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
               >
                 <InfoCard
                   headingText="Our Skilled Teachers"
                   ImageSrc={teacher}
                   count={30}
-                  countDuration={2}
                   bgColor={"#2E6AF0"}
                 />
                 <InfoCard
                   headingText="Currently Enrolled Students"
                   ImageSrc={student}
                   count={3500}
-                  countDuration={5}
                   bgColor={"#DD256F"}
                 />
                 <InfoCard
                   headingText="Currently Enrolled Classes"
                   ImageSrc={currentClass}
                   count={7}
-                  countDuration={0.5}
                   bgColor={"#8008E6"}
                 />
                 <InfoCard
                   headingText="Currently Available Courses"
                   ImageSrc={course}
                   count={6}
-                  countDuration={0.5}
                   bgColor={"#0DAE75"}
                 />
               </Box>
@@ -126,15 +154,19 @@ export default function Home() {
         <Box paddingY={25}>
           <Heading textAlign={"center"}>The Program in a Nutshell</Heading>
           <Heading
+            as={motion.h2}
             textAlign={"center"}
             color={"red.400"}
             size={"lg"}
             fontWeight={"300"}
             marginTop={3}
+            whileInView={{ scale: 1.3 }}
+            transitionDuration={"1"}
           >
             Earn While You Learn
           </Heading>
           <Text
+            as={motion.p}
             border={2}
             width={"75vw"}
             marginX="auto"
@@ -143,6 +175,8 @@ export default function Home() {
             padding={5}
             borderRadius={10}
             boxShadow="lg"
+            initial={{ opacity: 0, scale: 2 }}
+            whileInView={{ opacity: 1, scale: 1 }}
           >
             In this brand-new type of curriculum, students will learn how to
             make money and boost exports in the classroom and will begin doing
@@ -165,6 +199,7 @@ export default function Home() {
             beyond.""
           </Text>
           <Text
+            as={motion.p}
             border={2}
             width={"75vw"}
             marginX="auto"
@@ -173,6 +208,8 @@ export default function Home() {
             padding={5}
             borderRadius={10}
             boxShadow="2xl"
+            initial={{ opacity: 0, scale: 2 }}
+            whileInView={{ opacity: 1, scale: 1 }}
           >
             The Battle of Pakistan Begins <br /> We are not rats but warriors we
             will not leave a sinking ship but fight till the last breadth. Those
@@ -194,14 +231,16 @@ export default function Home() {
             D-Day
           </Text>
           <Box width={"75vw"} margin={"auto"}>
-            <iframe
+            <motion.iframe
               src="https://www.youtube.com/embed/PwLzOxLe4zc"
               style={{
                 width: "100%",
                 height: "100%",
                 aspectRatio: "16/9",
               }}
-            ></iframe>
+              initial={{ opacity: 0, scaleY: 0 }}
+              whileInView={{ opacity: 1, scaleY: 1 }}
+            ></motion.iframe>
           </Box>
         </Box>
       </Box>

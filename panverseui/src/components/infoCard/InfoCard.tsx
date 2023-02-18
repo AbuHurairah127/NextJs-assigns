@@ -1,7 +1,6 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import Image, { type StaticImageData } from "next/image";
-import CountUp from "react-countup";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   headingText: string;
@@ -10,10 +9,9 @@ type Props = {
   bgColor: string;
 };
 const InfoCard = (props: Props) => {
-  const [counterOn, setCounterOn] = useState<Boolean>(false);
-
   return (
     <Box
+      as={motion.div}
       width={["80vw", "40vw", "20vw", "20vw"]}
       height={225}
       bgColor={props.bgColor}
@@ -31,6 +29,11 @@ const InfoCard = (props: Props) => {
         boxShadow: "2xl",
       }}
       marginBottom={{ base: 10, md: 10, lg: 0 }}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{
+        scale: 0.8,
+        borderRadius: "100%",
+      }}
     >
       <Image src={props.ImageSrc} alt={"img"} width={56}></Image>
 
