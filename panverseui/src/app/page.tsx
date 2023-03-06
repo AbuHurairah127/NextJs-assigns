@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import coding from "./../assets/97639-coding.json";
+import earn from "./../assets/earn-while-you-learn.json";
 import Hero from "@/views/hero/Hero";
 import InfoCard from "@/components/infoCard/InfoCard";
 import teacher from "./../assets/teachers.png";
@@ -17,7 +18,7 @@ import currentClass from "./../assets/classrooms.png";
 import course from "./../assets/courses.png";
 import { motion, isValidMotionProp, useScroll } from "framer-motion";
 import Link from "next/link";
-const ChakraBox = chakra(motion.div, {
+const ChakraBox: any = chakra(motion.div, {
   /**
    * Allow motion props and non-Chakra props to be forwarded.
    */
@@ -36,16 +37,17 @@ export default function Home() {
           height={{ lg: "90vh" }}
           flexDirection={{ base: "column", md: "row" }}
         >
-          <Box
-            as={motion.div}
+          <ChakraBox
             width={["100vw", "100vw", "50vw", "50vw"]}
             display={"flex"}
             justifyContent="center"
             alignItems={"center"}
             flexDirection={"column"}
             marginY={35}
-            initial={{ translateX: "-100vw" }}
-            animate={{ translateX: 0 }}
+            initial={{ translateX: "-50vw", opacity: 0 }}
+            animate={{ translateX: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{ duration: 2 }}
           >
             <Heading marginX={{ base: 10 }} marginY={{ base: 4 }}>
               Start Your Developer Journey in the Web 3.0 and Virtual Universe
@@ -65,8 +67,8 @@ export default function Home() {
                 Panaverse.
               </Text>
             </Text>
-          </Box>
-          <Box
+          </ChakraBox>
+          <ChakraBox
             as={motion.div}
             display={"flex"}
             justifyContent="center"
@@ -79,18 +81,18 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1.1 }}
           >
             <Lottie animationData={coding} loop={true} />
-            <Box
+            <ChakraBox
               as={motion.div}
               width={220}
               alignSelf={{ lg: "flex-start" }}
               boxShadow={"2xl"}
               padding={3}
               borderRadius={8}
-              initial={{ scale: 0 }}
-              animate={{ rotate: 360, scale: 1 }}
+              initial={{ scale: 1 }}
+              animate={{ translateY: 35 }}
               // @ts-ignore no problem in operation, although type error appears.
               transition={{
-                duration: 3,
+                duration: 2,
                 ease: "easeInOut",
                 repeat: Infinity,
                 repeatType: "loop",
@@ -100,27 +102,35 @@ export default function Home() {
                 {" "}
                 Join a 13 Trillion Dollar Industry with 5 Billion Users
               </Text>
-            </Box>
-          </Box>
+            </ChakraBox>
+          </ChakraBox>
         </Flex>
-        <Box bgColor={"gray.100"} paddingX={5} paddingY={10}>
-          <Heading textAlign={"center"}>We Are Proud To Tell You</Heading>
-          <Text textAlign={"center"} paddingX={"10vw"}>
-            Our community, teachers, and students are all essential components
-            of this dynamic and thriving network, working together to create a
-            brighter future.
-          </Text>
-          <Box>
-            <Box>
-              <Box
-                as={motion.div}
+        <ChakraBox bgColor={"gray.100"} paddingX={5} paddingY={10}>
+          <ChakraBox
+            initial={{ opacity: 0, translateY: 50 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            // @ts-ignore
+            transition={{ duration: 1.3 }}
+          >
+            <Heading textAlign={"center"}>We Are Proud To Tell You</Heading>
+            <Text textAlign={"center"} paddingX={"10vw"}>
+              Our community, teachers, and students are all essential components
+              of this dynamic and thriving network, working together to create a
+              brighter future.
+            </Text>
+          </ChakraBox>
+          <ChakraBox>
+            <ChakraBox>
+              <ChakraBox
                 display={"flex"}
                 justifyContent={"space-between"}
                 flexWrap={"wrap"}
                 marginBottom={35}
                 marginTop={55}
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                //@ts-ignore
+                transition={{ duration: 1.3 }}
               >
                 <InfoCard
                   headingText="Our Skilled Teachers"
@@ -146,58 +156,78 @@ export default function Home() {
                   count={6}
                   bgColor={"#0DAE75"}
                 />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+              </ChakraBox>
+            </ChakraBox>
+          </ChakraBox>
+        </ChakraBox>
         {/* Main Faculty */}
         <Box paddingY={25}>
-          <Heading textAlign={"center"}>The Program in a Nutshell</Heading>
-          <Heading
-            as={motion.h2}
-            textAlign={"center"}
-            color={"red.400"}
-            size={"lg"}
-            fontWeight={"300"}
-            marginTop={3}
-            whileInView={{ scale: 1.3 }}
-            transitionDuration={"1"}
+          <Heading textAlign={"center"}>Brief Summary of Program</Heading>
+
+          <ChakraBox
+            display={"flex"}
+            justifyContent={"space-evenly"}
+            alignItems={"center"}
+            marginY={8}
           >
-            Earn While You Learn
-          </Heading>
-          <Text
-            as={motion.p}
-            border={2}
-            width={"75vw"}
-            marginX="auto"
-            marginY={"30px"}
-            fontSize={18}
-            padding={5}
-            borderRadius={10}
-            boxShadow="lg"
-            initial={{ opacity: 0, scale: 2 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-          >
-            In this brand-new type of curriculum, students will learn how to
-            make money and boost exports in the classroom and will begin doing
-            so within six months of the program’s beginning. It resembles a
-            cross between a corporate venture and an educational project.
-          </Text>
-          <Box
+            <ChakraBox
+              width={{ sm: "100vw", md: "50vw" }}
+              initial={{ rotate: 0, translate: "-50%", opacity: 0 }}
+              whileInView={{ rotate: 360, opacity: 1, translate: 0 }}
+              //@ts-ignore
+              transition={{ duration: 1.3 }}
+            >
+              <Lottie animationData={earn} loop={true} />
+            </ChakraBox>
+            <ChakraBox width={"50vw"} paddingX={5}>
+              <Heading
+                as={motion.h2}
+                textAlign={"center"}
+                color={"red.400"}
+                size={"lg"}
+                fontWeight={"bold"}
+                marginTop={3}
+                whileInView={{ scale: 1.3 }}
+                transitionDuration={"1"}
+              >
+                Earn While You Learn
+              </Heading>
+              <Text
+                as={motion.p}
+                border={2}
+                fontSize={19}
+                textAlign={"center"}
+                marginX={25}
+                marginTop={5}
+                initial={{ opacity: 0, scale: 2 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+              >
+                Students in this brand-new type of curriculum will learn how to
+                make money and increase exports in the classroom and will be
+                able to do so within six months of the program's start. It
+                resembles a hybrid of a business venture and an educational
+                project. With a unique blend of business and educational
+                elements. Students will begin applying these skills within six
+                months of the program's start
+              </Text>
+            </ChakraBox>
+          </ChakraBox>
+          <ChakraBox
             borderBottom={1}
             borderStyle={"solid"}
             width={"25vw"}
             marginX="auto"
-          ></Box>
+          ></ChakraBox>
           <Heading textAlign={"center"} marginTop={"10px"}>
             Our Motive and Goals
           </Heading>
           <Text textAlign={"center"} marginX={8} marginTop={2}>
-            "The Only Way Pakistan Can Get Out of the Current Financial
-            Difficulties is By Increasing Software Exports" <br />
-            ""Empowering our nation's IT industry to export $1 billion and
-            beyond.""
+            &quot;The Only Way Pakistan Can Get Out of the Current Financial
+            Difficulties is By Increasing Software Exports&quot; <br />
+            &quot;&quot;Empowering our nation's IT industry to export $1 billion
+            and beyond.&quot;
           </Text>
+
           <Text
             as={motion.p}
             border={2}
