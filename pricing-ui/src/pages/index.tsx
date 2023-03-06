@@ -22,7 +22,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-[50vh] bg-[#6B46C1] w-screen absolute -z-10"></div>
+      <div className="h-[50vh] bg-[#6B46C1] w-full absolute -z-10 overflow-x-hidden"></div>
       <div
         className={"flex flex-col items-center min-h-[50vh] overflow-x-hidden"}
       >
