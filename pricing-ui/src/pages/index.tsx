@@ -32,8 +32,8 @@ export default function Home() {
         <p className="text-center text-white mt-3 text-lg">
           Plans that are carefully crafted to suit your business.
         </p>
-        <div className="flex bg-white shadow-xl rounded-md w-[80vw] mt-16 xl:mt-20 mb-8 z-50 ">
-          <div className="bg-[#642cd34e] flex flex-col w-[35%] items-center rounded-l-md">
+        <div className="flex flex-col lg:flex-row bg-white shadow-xl rounded-md w-[80vw] mt-16 xl:mt-20 mb-8 z-50 ">
+          <div className="bg-[#642cd34e] flex flex-col lg:w-[35%] items-center rounded-l-md">
             <h3 className="text-center font-bold text-3xl pt-[40px]">
               Premium Pro
             </h3>
@@ -54,7 +54,7 @@ export default function Home() {
               {features.map((text, i) => {
                 return (
                   <div key={i} className={"flex pb-3"}>
-                    <Image src={vectortickmark} alt="" />
+                    <Image src={vectortickmark} alt="" className="h-4 w-4" />
                     <p className="pl-6">{text}</p>
                   </div>
                 );

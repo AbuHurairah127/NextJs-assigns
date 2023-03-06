@@ -5,6 +5,7 @@ const logoutUser = async (req: NextApiRequest, res: NextApiResponse) => {
   const { cookies } = req;
   try {
     const jwt = cookies.authToken;
+    console.log("🚀 ~ file: logout-user.ts:9 ~ logoutUser ~ jwt:", jwt);
     if (!jwt) {
       return res.status(200).send("You are already not logged in!");
     } else {
@@ -18,7 +19,8 @@ const logoutUser = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).send("You have successfully logged out.");
     }
   } catch (error) {
-    res;
+    res.status(500).json("Internal Server Error");
+    console.log(error);
   }
 };
 

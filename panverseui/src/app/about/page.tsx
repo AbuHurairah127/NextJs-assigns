@@ -2,6 +2,7 @@
 
 import { Box, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import president from "./../../assets/president.jpg";
 const page = () => {
   return (
@@ -17,7 +18,12 @@ const page = () => {
           }}
         ></Image>
       </Box>
-      <Text textAlign={"center"}>
+      <Text
+        textAlign={"center"}
+        as={motion.p}
+        initial={{ opacity: 0, scale: 2 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+      >
         Dr.Arif Alvi President of Islamic Republic of Pakistan
       </Text>
       <Box>
@@ -29,11 +35,19 @@ const page = () => {
           size={"lg"}
           textAlign={"center"}
           marginY={"5px"}
+          marginX={"auto"}
           textColor={"red.500"}
+          width={"fit-content"}
+          as={motion.h2}
+          initial={{ opacity: 0, scale: 2 }}
+          whileInView={{ opacity: 1, scale: 1.25 }}
+          //@ts-ignore
+          transition={{ duration: 5 }}
         >
           Our Mission
         </Heading>
         <Box
+          as={motion.div}
           width={"75vw"}
           textAlign={"center"}
           marginX={"auto"}
