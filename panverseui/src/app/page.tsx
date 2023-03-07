@@ -6,6 +6,7 @@ import {
   Text,
   chakra,
   shouldForwardProp,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import coding from "./../assets/97639-coding.json";
@@ -18,6 +19,7 @@ import currentClass from "./../assets/classrooms.png";
 import course from "./../assets/courses.png";
 import { motion, isValidMotionProp, useScroll } from "framer-motion";
 import Link from "next/link";
+import economy from "./../assets/economy.json";
 const ChakraBox: any = chakra(motion.div, {
   /**
    * Allow motion props and non-Chakra props to be forwarded.
@@ -27,7 +29,18 @@ const ChakraBox: any = chakra(motion.div, {
 });
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
+  const [isLargerThanLg] = useMediaQuery("(min-width: 1024px)");
+
+  const animation = {
+    y: [50, 0, 50], // An array of values for y property to bounce between
+    transition: {
+      duration: 0.8, // Total duration of the animation
+      ease: "easeInOut", // Easing function for the animation
+      times: [0, 1.5, 3], // Specifies the time percentage of each value in the array
+      repeat: Infinity, // Specifies the number of times the animation should repeat
+      repeatType: "reverse", // Specifies the type of repeat animation
+    },
+  };
   return (
     <main>
       <Box overflowX={"hidden"}>
@@ -88,15 +101,7 @@ export default function Home() {
               boxShadow={"2xl"}
               padding={3}
               borderRadius={8}
-              initial={{ scale: 1 }}
-              animate={{ translateY: 35 }}
-              // @ts-ignore no problem in operation, although type error appears.
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
+              animate={animation}
             >
               <Text>
                 {" "}
@@ -123,7 +128,12 @@ export default function Home() {
             <ChakraBox>
               <ChakraBox
                 display={"flex"}
-                justifyContent={"space-between"}
+                justifyContent={[
+                  "center",
+                  "center",
+                  "space-between",
+                  "space-between",
+                ]}
                 flexWrap={"wrap"}
                 marginBottom={35}
                 marginTop={55}
@@ -166,20 +176,54 @@ export default function Home() {
 
           <ChakraBox
             display={"flex"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
+            justifyContent={{ md: "space-evenly" }}
+            alignItems={{ md: "center" }}
             marginY={8}
+            flexDirection={["column", "column", "row", "row"]}
           >
             <ChakraBox
-              width={{ sm: "100vw", md: "50vw" }}
-              initial={{ rotate: 0, translate: "-50%", opacity: 0 }}
-              whileInView={{ rotate: 360, opacity: 1, translate: 0 }}
+              width={{ xs: "100vw", lg: "50vw" }}
+              initial={
+                isLargerThanLg && { rotate: 0, translate: "-50%", opacity: 0 }
+              }
+              whileInView={
+                isLargerThanLg && {
+                  opacity: [0.3, 0.85, 1],
+                  translate: ["-50%", "-0.1%", 0],
+                  rotate: [-360, 10, 0],
+                }
+              }
               //@ts-ignore
-              transition={{ duration: 1.3 }}
+              transition={
+                isLargerThanLg && {
+                  duration: 1.3,
+                  ease: "easeInOut",
+                  times: [0, 0.9, 1],
+                  bounceStiffness: 500,
+                  bounceDamping: 20,
+                }
+              }
             >
               <Lottie animationData={earn} loop={true} />
             </ChakraBox>
-            <ChakraBox width={"50vw"} paddingX={5}>
+            <ChakraBox
+              width={{ xs: "100vw", lg: "50vw" }}
+              paddingX={5}
+              initial={isLargerThanLg && { translate: "-50%" }}
+              whileInView={
+                isLargerThanLg && { translate: ["-50%", "-0.1%", 0] }
+              }
+              //@ts-ignore
+              transition={
+                isLargerThanLg && {
+                  duration: 1.3,
+                  ease: "easeInOut",
+                  times: [0, 0.9, 1],
+                  bounceStiffness: 500,
+                  bounceDamping: 20,
+                }
+              }
+            >
               <Heading
                 as={motion.h2}
                 textAlign={"center"}
@@ -187,8 +231,6 @@ export default function Home() {
                 size={"lg"}
                 fontWeight={"bold"}
                 marginTop={3}
-                whileInView={{ scale: 1.3 }}
-                transitionDuration={"1"}
               >
                 Earn While You Learn
               </Heading>
@@ -199,8 +241,6 @@ export default function Home() {
                 textAlign={"center"}
                 marginX={25}
                 marginTop={5}
-                initial={{ opacity: 0, scale: 2 }}
-                whileInView={{ opacity: 1, scale: 1 }}
               >
                 Students in this brand-new type of curriculum will learn how to
                 make money and increase exports in the classroom and will be
@@ -215,63 +255,99 @@ export default function Home() {
           <ChakraBox
             borderBottom={1}
             borderStyle={"solid"}
-            width={"25vw"}
+            width={"50vw"}
             marginX="auto"
           ></ChakraBox>
-          <Heading textAlign={"center"} marginTop={"10px"}>
-            Our Motive and Goals
-          </Heading>
-          <Text textAlign={"center"} marginX={8} marginTop={2}>
-            &quot;The Only Way Pakistan Can Get Out of the Current Financial
-            Difficulties is By Increasing Software Exports&quot; <br />
-            &quot;&quot;Empowering our nation's IT industry to export $1 billion
-            and beyond.&quot;
-          </Text>
+          <ChakraBox bgColor={"gray.100"} padding={5}>
+            <Heading textAlign={"center"} marginTop={"10px"}>
+              Our Motive and&nbsp;
+              <Heading as={"span"} color={"red.600"}>
+                Goals
+              </Heading>
+            </Heading>
+            <Text textAlign={"center"} marginX={8} marginTop={2}>
+              &quot;The Only Way Pakistan Can Get Out of the Current Financial
+              Difficulties is By Increasing Software Exports&quot; <br />
+              &quot;Empowering our nation's IT industry to export $1 billion and
+              beyond.&quot;
+            </Text>
 
-          <Text
-            as={motion.p}
-            border={2}
-            width={"75vw"}
-            marginX="auto"
-            marginY={"30px"}
-            fontSize={18}
-            padding={5}
-            borderRadius={10}
-            boxShadow="2xl"
-            initial={{ opacity: 0, scale: 2 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-          >
-            The Battle of Pakistan Begins <br /> We are not rats but warriors we
-            will not leave a sinking ship but fight till the last breadth. Those
-            with us stand firm our time has arrived and those who are afraid and
-            weak step out of the way. The plan has three phases/stages: <br />{" "}
-            Phase 1: In phase one we will cover the&nbsp;
-            <Link
-              href={"https://rb.gy/vmrgvy"}
-              style={{ color: "blue", textDecoration: "underline" }}
+            <ChakraBox
+              display={"flex"}
+              alignItems={"center"}
+              flexDirection={["column", "column", "row", "row"]}
             >
-              Syllabus
-            </Link>{" "}
-            <br />
-            <br />
-            Phase 2: We will rebuild the Pakistan Economy using Web 3
-            technologies. A detailed plan has been developed and will be
-            disclosed when we have completed phase 1. <br /> <br /> Phase 3: A
-            plan is in place but we will operate on this in stealth mode till
-            D-Day
-          </Text>
-          <Box width={"75vw"} margin={"auto"}>
-            <motion.iframe
+              <Text
+                as={motion.p}
+                border={2}
+                width={{ xs: "100vw", lg: "50vw" }}
+                marginX="auto"
+                marginY={"30px"}
+                fontSize={18}
+                padding={5}
+                borderRadius={10}
+                initial={isLargerThanLg && { opacity: 0, scale: 2 }}
+                whileInView={isLargerThanLg ? { opacity: 1, scale: 1 } : {}}
+              >
+                The Battle of Pakistan Begins <br /> We are not rats but
+                warriors we will not leave a sinking ship but fight till the
+                last breadth. Those with us stand firm our time has arrived and
+                those who are afraid and weak step out of the way. The plan has
+                three phases/stages: <br /> Phase 1: In phase one we will cover
+                the&nbsp;
+                <Link
+                  href={"https://rb.gy/vmrgvy"}
+                  style={{ color: "blue", textDecoration: "underline" }}
+                >
+                  Syllabus
+                </Link>{" "}
+                <br />
+                <br />
+                Phase 2: We will rebuild the Pakistan Economy using Web 3
+                technologies. A detailed plan has been developed and will be
+                disclosed when we have completed phase 1. <br /> <br /> Phase 3:
+                A plan is in place but we will operate on this in stealth mode
+                till D-Day
+              </Text>
+              <ChakraBox
+                width={{ xs: "100vw", lg: "50vw" }}
+                initial={{ scale: 1, translate: "50%", opacity: 0 }}
+                whileInView={{
+                  opacity: [0.3, 0.85, 1],
+                  translate: ["50%", "0.1%", 0],
+                  scale: [1, 1.25, 1],
+                }}
+                //@ts-ignore
+                transition={{
+                  duration: 1.3,
+                  ease: "easeInOut",
+                  times: [0, 0.5, 1],
+
+                  bounceStiffness: 500,
+                  bounceDamping: 20,
+                }}
+              >
+                <Lottie animationData={economy} loop={true} />
+              </ChakraBox>{" "}
+            </ChakraBox>
+          </ChakraBox>
+          <ChakraBox
+            width={"75vw"}
+            marginY={5}
+            marginX={"auto"}
+            initial={{ opacity: 0, scaleY: 0 }}
+            whileInView={{ opacity: 1, scaleY: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <iframe
               src="https://www.youtube.com/embed/PwLzOxLe4zc"
               style={{
                 width: "100%",
                 height: "100%",
                 aspectRatio: "16/9",
               }}
-              initial={{ opacity: 0, scaleY: 0 }}
-              whileInView={{ opacity: 1, scaleY: 1 }}
-            ></motion.iframe>
-          </Box>
+            ></iframe>
+          </ChakraBox>
         </Box>
       </Box>
     </main>

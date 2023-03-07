@@ -4,6 +4,7 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import president from "./../../assets/president.jpg";
+import Typewriter from "typewriter-effect";
 const page = () => {
   return (
     <main>
@@ -28,8 +29,21 @@ const page = () => {
       </Text>
       <Box>
         <Heading textAlign={"center"}>
-          Presidential Initiative for Artificial Intelligence & Computing
-          (PIAIC)
+          <Typewriter
+            options={{
+              strings: [
+                "Presidential Initiative for Artificial Intelligence & Cloud Computing",
+                "PanaCloud",
+                "Saylani Welfare International Trust",
+              ],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+
+          {/* Presidential Initiative for Artificial Intelligence & Computing
+            (PIAIC) */}
+          {/* </Typewriter> */}
         </Heading>
         <Heading
           size={"lg"}
