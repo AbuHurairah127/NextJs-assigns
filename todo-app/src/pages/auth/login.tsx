@@ -60,6 +60,7 @@ const Login: React.FC = () => {
       border="2px"
       borderStyle={"solid"}
       borderColor="blackAlpha.100"
+      bgColor={"#f1faee"}
     >
       <Flex
         style={{
@@ -71,6 +72,7 @@ const Login: React.FC = () => {
           padding: 15,
           borderRadius: 8,
           flexDirection: "column",
+          backgroundColor: "#f1faee",
         }}
       >
         <Heading textAlign={"center"}>Login</Heading>
@@ -84,6 +86,7 @@ const Login: React.FC = () => {
               value={loginData.email}
               onChange={onChangeHandler}
               placeholder="ziakhan@panaverse.com"
+              borderColor={"#1d3557"}
             />
           </FormControl>
           <FormControl>
@@ -95,20 +98,25 @@ const Login: React.FC = () => {
               value={loginData.password}
               onChange={onChangeHandler}
               placeholder="**********"
+              borderColor={"#1d3557"}
             />
           </FormControl>
           <Button
             disabled={!loading}
             type="submit"
-            colorScheme={"linkedin"}
+            bgColor={"#1d3557"}
+            color={"white"}
+            _hover={{ bgColor: "#1d3557" }}
             mt={4}
           >
             {loading ? "Loading..." : "Login"}
           </Button>
           <Button
             type="button"
-            colorScheme={"linkedin"}
-            variant="outline"
+            color={"#1d3557"}
+            bgColor={"white"}
+            borderColor={"#1d3557"}
+            borderWidth={1}
             mt={4}
             ml={4}
           >
