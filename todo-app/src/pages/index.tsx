@@ -30,7 +30,8 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loader, setLoader] = useState(false);
-
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+  const [updateId, setUpdateId] = useState<string>("");
   useEffect(() => {
     axios.get("api/auth/user-data").then((response) => {
       setUserData(response.data.user);
@@ -65,6 +66,7 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       const response = await axios.post("api/tasks/add-task", newTodo);
       if (response.status === 200) {
         setTodos([...todos, response.data]);
+        setTodo("");
       }
     } catch (error: any) {
       alert(error.response.data);
@@ -82,7 +84,40 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       if (response.status === 200) {
         setTodos(todos.filter((todo) => todo._id !== id));
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleUpdateTodo = (id: string) => {
+    setIsUpdate(true);
+    const todo = todos.find((todo) => todo._id === id);
+    if (todo) {
+      setTodo(todo.task);
+      setUpdateId(id);
+    }
+  };
+  const onCTAUpdate = async () => {
+    if (!userData) return;
+    console.log(updateId);
+
+    const updateTodo: {
+      task: string;
+      isCompleted: boolean;
+      _id: string;
+    } = {
+      task: todo,
+      isCompleted: false,
+      _id: updateId,
+    };
+    const response = await axios.post("api/tasks/update-task", updateTodo);
+    if (response.status === 200) {
+      setTodos(
+        todos.map((todo) => (todo._id === updateId ? response.data : todo))
+      );
+      setIsUpdate(false);
+      setUpdateId("");
+      setTodo("");
+    }
   };
   const handleToggleComplete = (id: string) => {
     setTodos(
@@ -120,18 +155,34 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
             placeholder="Learn next js 13..."
             borderRightRadius={0}
           />
-          <Button
-            type="submit"
-            bgColor={"#1d3557"}
-            color={"white"}
-            _hover={{
-              bgColor: "#457b9d",
-            }}
-            disabled={!loader}
-            borderLeftRadius={0}
-          >
-            {!loader ? "Add Todo" : "Adding A Todo"}
-          </Button>
+          {!isUpdate ? (
+            <Button
+              type="submit"
+              bgColor={"#1d3557"}
+              color={"white"}
+              _hover={{
+                bgColor: "#457b9d",
+              }}
+              disabled={!loader}
+              borderLeftRadius={0}
+            >
+              {!loader ? "Add Todo" : "Adding A Todo"}
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              bgColor={"#1d3557"}
+              color={"white"}
+              _hover={{
+                bgColor: "#457b9d",
+              }}
+              onClick={onCTAUpdate}
+              disabled={!loader}
+              borderLeftRadius={0}
+            >
+              {!loader ? "Update Todo" : "Updating A Todo"}
+            </Button>
+          )}
         </Box>
       </form>
       <Text fontSize={20} textAlign={"center"}>
@@ -157,7 +208,7 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
                 {todo.task}
               </Text>
               <Button
-                onClick={() => handleRemoveTodo(todo._id)}
+                onClick={() => handleUpdateTodo(todo._id)}
                 padding={0}
                 bgColor={"#1d3557"}
                 color={"white"}

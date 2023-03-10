@@ -4,6 +4,8 @@ import Task from "./model/taskModel";
 
 const updateTask = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    console.log(req.body);
+
     connectToMongoDB();
     const updatedTask = await Task.findByIdAndUpdate(
       { _id: req.body._id },
