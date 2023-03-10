@@ -7,14 +7,22 @@ import {
   Flex,
   Box,
   Heading,
+  InputRightElement,
+  IconButton,
+  Checkbox,
+  Text,
+  Center,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const SignUp: React.FC = () => {
   axios.defaults.withCredentials = true;
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,6 +64,7 @@ const SignUp: React.FC = () => {
       border="2px"
       borderStyle={"solid"}
       borderColor="blackAlpha.100"
+      bgColor={"#f1faee"}
     >
       <Flex
         style={{
@@ -67,6 +76,7 @@ const SignUp: React.FC = () => {
           padding: 15,
           borderRadius: 8,
           flexDirection: "column",
+          backgroundColor: "#f1faee",
         }}
       >
         <Heading textAlign={"center"}>SignUp</Heading>
@@ -82,6 +92,7 @@ const SignUp: React.FC = () => {
                 onChange={handleChange}
                 placeholder="Enter your first name"
                 width={"96%"}
+                borderColor={"#1d3557"}
               />
             </FormControl>
             <FormControl>
@@ -93,6 +104,7 @@ const SignUp: React.FC = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 placeholder="Enter your last name"
+                borderColor={"#1d3557"}
               />
             </FormControl>
           </Box>
@@ -105,6 +117,7 @@ const SignUp: React.FC = () => {
               value={formData.username}
               onChange={handleChange}
               placeholder="Enter your username"
+              borderColor={"#1d3557"}
             />
           </FormControl>
           <FormControl>
@@ -116,6 +129,7 @@ const SignUp: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
+              borderColor={"#1d3557"}
             />
           </FormControl>
           <FormControl>
@@ -123,21 +137,41 @@ const SignUp: React.FC = () => {
             <Input
               id="password"
               name="password"
-              type="password"
+              type={!showPassword ? "password" : "text"}
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
+              borderColor={"#1d3557"}
             />
+            <Flex marginTop={3} alignItems={"center"}>
+              <Checkbox
+                aria-label="Toggle password visibility"
+                size="md"
+                onChange={() => setShowPassword(!showPassword)}
+                isChecked={showPassword}
+              />
+              <Text marginLeft={2}>Show Password</Text>
+            </Flex>
           </FormControl>
           <Button
             type="submit"
-            colorScheme={"linkedin"}
+            bgColor={"#1d3557"}
+            color={"white"}
+            _hover={{ bgColor: "#1d3557" }}
             mt={4}
             disabled={!loader}
           >
             {!loader ? "SignUp" : "Loading..."}
           </Button>
-          <Button variant="outline" colorScheme={"linkedin"} mt={4} ml={4}>
+          <Button
+            variant="outline"
+            color={"#1d3557"}
+            bgColor={"white"}
+            borderColor={"#1d3557"}
+            borderWidth={1}
+            mt={4}
+            ml={4}
+          >
             <Link href="/auth/login">Login</Link>
           </Button>
         </form>
