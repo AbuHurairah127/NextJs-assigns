@@ -20,12 +20,12 @@ const Navbar: React.FC<Props> = (props) => {
     <Box
       display={"flex"}
       justifyContent="space-between"
-      bgColor={"#023047"}
+      bgColor={"#1d3557"}
       height={16}
       alignItems={"center"}
     >
       <Text
-        color={"#8ecae6"}
+        color={"#a8dadc"}
         marginLeft={4}
         fontStyle={"italic"}
         fontWeight={"bold"}
@@ -40,7 +40,12 @@ const Navbar: React.FC<Props> = (props) => {
       <Button
         type="button"
         marginRight={4}
-        colorScheme={"linkedin"}
+        bgColor={"#e63946"}
+        color={"white"}
+        _hover={{
+          bgColor: "white",
+          color: "#e63946",
+        }}
         onClick={props.logoutHandler}
       >
         Logout

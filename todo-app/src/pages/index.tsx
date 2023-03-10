@@ -12,6 +12,9 @@ import {
 import axios from "axios";
 import Router from "next/router";
 import Navbar, { UserData } from "@/components/navbar/navbar";
+import { MdDeleteForever, MdOutlineCheckCircle } from "react-icons/md";
+import { RxCrossCircled } from "react-icons/rx";
+import { AiFillEdit } from "react-icons/ai";
 interface Todo {
   _id: string;
   createdBy: string;
@@ -86,7 +89,7 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
     }
   };
   return (
-    <Box>
+    <Box bgColor={"#f1faee"} minHeight={"100vh"}>
       <Navbar userData={userData} logoutHandler={logoutHandler} />
       <form onSubmit={(e) => handleAddTodo(e)}>
         <Heading textAlign={"center"} marginTop={5} color={"#023047"}>
@@ -98,20 +101,25 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
           padding={5}
           borderWidth={1}
           borderStyle={"solid"}
-          borderColor={"#023047"}
+          borderColor={"#457b9d"}
           borderRadius={8}
         >
           <Input
             type="text"
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
-            placeholder="Add Todo"
+            placeholder="Learn next js 13..."
+            borderRightRadius={0}
           />
           <Button
             type="submit"
-            colorScheme={"linkedin"}
-            marginLeft={4}
+            bgColor={"#1d3557"}
+            color={"white"}
+            _hover={{
+              bgColor: "#457b9d",
+            }}
             disabled={!loader}
+            borderLeftRadius={0}
           >
             {!loader ? "Add Todo" : "Adding A Todo"}
           </Button>
@@ -123,7 +131,15 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       <Box display={"flex"} justifyContent={"center"}>
         <UnorderedList>
           {todos.map((todo) => (
-            <ListItem key={todo._id}>
+            <ListItem
+              key={todo._id}
+              width={"90vw"}
+              padding={2}
+              marginY={1}
+              borderRadius={10}
+              borderColor={"#192F4D"}
+              borderWidth={1}
+            >
               <Text
                 style={{
                   textDecoration: todo.isCompleted ? "line-through" : "",
@@ -131,9 +147,39 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
               >
                 {todo.task + " " + todo._id}
               </Text>
-              <Button onClick={() => handleRemoveTodo(todo._id)}>Remove</Button>
-              <Button onClick={() => handleToggleComplete(todo._id)}>
-                {todo.isCompleted ? "Mark Incomplete" : "Mark Complete"}
+              <Button
+                onClick={() => handleRemoveTodo(todo._id)}
+                padding={0}
+                bgColor={"#1d3557"}
+                color={"white"}
+                _hover={{
+                  bgColor: "#457b9d",
+                }}
+              >
+                <AiFillEdit size={20} />
+              </Button>
+              <Button
+                onClick={() => handleRemoveTodo(todo._id)}
+                padding={0}
+                bgColor={"#e63946"}
+                marginLeft={3}
+                _hover={{ bgColor: "#e63946" }}
+              >
+                <MdDeleteForever size={20} />
+              </Button>
+              <Button
+                onClick={() => handleToggleComplete(todo._id)}
+                bgColor={"#457b9d"}
+                _hover={{
+                  bgColor: "#457b9d",
+                }}
+                marginLeft={3}
+              >
+                {todo.isCompleted ? (
+                  <RxCrossCircled size={20} color={"white"} />
+                ) : (
+                  <MdOutlineCheckCircle size={20} color={"white"} />
+                )}
               </Button>
             </ListItem>
           ))}
