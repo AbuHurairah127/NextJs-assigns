@@ -59,7 +59,7 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
         isCompleted: boolean;
       } = {
         createdBy: userData._id,
-        task: (e.target as HTMLInputElement).value,
+        task: todo,
         isCompleted: false,
       };
       const response = await axios.post("api/tasks/add-task", newTodo);
@@ -72,8 +72,17 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
       setLoader(false);
     }
   };
-  const handleRemoveTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo._id !== id));
+  const handleRemoveTodo = async (id: string) => {
+    try {
+      const response = await axios.delete("api/tasks/delete-task", {
+        params: {
+          taskId: id,
+        },
+      });
+      if (response.status === 200) {
+        setTodos(todos.filter((todo) => todo._id !== id));
+      }
+    } catch (error) {}
   };
   const handleToggleComplete = (id: string) => {
     setTodos(
@@ -145,7 +154,7 @@ const Todo: React.FC<TodoProps> = ({ initialTodos }) => {
                   textDecoration: todo.isCompleted ? "line-through" : "",
                 }}
               >
-                {todo.task + " " + todo._id}
+                {todo.task}
               </Text>
               <Button
                 onClick={() => handleRemoveTodo(todo._id)}

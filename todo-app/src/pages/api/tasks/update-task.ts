@@ -7,7 +7,7 @@ const updateTask = async (req: NextApiRequest, res: NextApiResponse) => {
     connectToMongoDB();
     const updatedTask = await Task.findByIdAndUpdate(
       { _id: req.body._id },
-      { task: req.body.task, description: req.body.description }
+      { task: req.body.task, isCompleted: req.body.isCompleted }
     );
     res.status(200).json(updatedTask);
   } catch (error) {
