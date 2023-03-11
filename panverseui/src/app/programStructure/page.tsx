@@ -39,6 +39,7 @@ const page = () => {
         {firstThreeQauterData.map((quter, i) => {
           return (
             <Box
+              key={i}
               width={"300px"}
               height={"300px"}
               borderRadius={10}

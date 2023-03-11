@@ -58,6 +58,7 @@ const page = () => {
         {mainFaculty.map((member, i) => {
           return (
             <Flex
+              key={i}
               flexDirection={"column"}
               justifyContent={"space-between"}
               alignItems={"center"}

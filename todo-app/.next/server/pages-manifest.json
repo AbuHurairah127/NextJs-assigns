@@ -2,9 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/auth/user-data": "pages/api/auth/user-data.js",
   "/api/tasks/add-task": "pages/api/tasks/add-task.js",
-  "/api/tasks/read-all-task": "pages/api/tasks/read-all-task.js",
-  "/": "pages/index.js",
-  "/api/tasks/delete-task": "pages/api/tasks/delete-task.js"
+  "/api/auth/logout-user": "pages/api/auth/logout-user.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/api/auth/user-data": "pages/api/auth/user-data.js",
+  "/api/tasks/read-all-task": "pages/api/tasks/read-all-task.js"
 }

@@ -342,8 +342,7 @@ export default function Home() {
             <iframe
               src="https://www.youtube.com/embed/PwLzOxLe4zc"
               style={{
-                width: "100%",
-                height: "100%",
+                width: "75vw",
                 aspectRatio: "16/9",
               }}
             ></iframe>
