@@ -1,5 +1,6 @@
 import Image from "next/image";
 import logo from "./../../../assets/logoipsum.svg";
+
 const Page = () => {
   return (
     <main className="h-screen w-screen bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] flex justify-center items-center">
