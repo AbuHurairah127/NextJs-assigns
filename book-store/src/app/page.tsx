@@ -3,6 +3,7 @@ import BooksTable from "../sections/booksTable/BooksTable";
 import Image from "next/image";
 import heroBg from "./../assets/wave-haikei.svg";
 import HeroRightSection from "@/components/heroRightSection/HeroRightSection";
+import Footer from "@/components/footer/Footer";
 export type BookType = {
   id: number;
   name: string;
@@ -28,14 +29,17 @@ export default async function Home() {
         <h1 className="mx-5 text-3xl font-thin tracking-wider text-white mt-5 w-screen lg:w-[50vw] text-center">
           Order Books: Unleash Your Imagination, One Page at a Time!
         </h1>
-        <HeroRightSection />
+        <div className="w-[50vw] flex justify-center items-center">
+          <HeroRightSection />
+        </div>
       </div>
       <h3 className="text-2xl font-thin text-[#302b63] text-center my-5 mx-5">
         Books you need to Enhance your knowledge!
       </h3>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mb-5">
         <BooksTable books={books} />
       </div>
+      <Footer />
     </main>
   );
 }
