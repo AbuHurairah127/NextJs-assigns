@@ -20,17 +20,54 @@ import course from "./../assets/courses.png";
 import { motion, isValidMotionProp, useScroll } from "framer-motion";
 import Link from "next/link";
 import economy from "./../assets/economy.json";
-const ChakraBox: any = chakra(motion.div, {
+import { StaticImageData } from "next/image";
+const ChakraBox = chakra(motion.div, {
   /**
    * Allow motion props and non-Chakra props to be forwarded.
    */
   shouldForwardProp: (prop) =>
     isValidMotionProp(prop) || shouldForwardProp(prop),
 });
+export type InfoTypes = {
+  heading: string;
+  image: StaticImageData;
+  count: number;
+  bg: string;
+};
 
 export default function Home() {
   const [isLargerThanLg] = useMediaQuery("(min-width: 1024px)");
-
+  const INFO_CARD_DATA: {
+    heading: string;
+    image: StaticImageData;
+    count: number;
+    bg: string;
+  }[] = [
+    {
+      heading: "Our Skilled Teachers",
+      image: teacher,
+      count: 30,
+      bg: "#2E6AF0",
+    },
+    {
+      heading: "Currently Enrolled Students",
+      image: student,
+      count: 3500,
+      bg: "#DD256F",
+    },
+    {
+      heading: "Current classes",
+      image: currentClass,
+      count: 14,
+      bg: "#8008E6",
+    },
+    {
+      heading: "Currently Available Courses",
+      image: course,
+      count: 6,
+      bg: "#0DAE75",
+    },
+  ];
   const animation = {
     y: [50, 0, 50], // An array of values for y property to bounce between
     transition: {
@@ -101,10 +138,10 @@ export default function Home() {
               boxShadow={"2xl"}
               padding={3}
               borderRadius={8}
+              //@ts-ignore
               animate={animation}
             >
               <Text>
-                {" "}
                 Join a 13 Trillion Dollar Industry with 5 Billion Users
               </Text>
             </ChakraBox>
@@ -142,30 +179,15 @@ export default function Home() {
                 //@ts-ignore
                 transition={{ duration: 1.3 }}
               >
-                <InfoCard
-                  headingText="Our Skilled Teachers"
-                  ImageSrc={teacher}
-                  count={30}
-                  bgColor={"#2E6AF0"}
-                />
-                <InfoCard
-                  headingText="Currently Enrolled Students"
-                  ImageSrc={student}
-                  count={3500}
-                  bgColor={"#DD256F"}
-                />
-                <InfoCard
-                  headingText="Currently Enrolled Classes"
-                  ImageSrc={currentClass}
-                  count={7}
-                  bgColor={"#8008E6"}
-                />
-                <InfoCard
-                  headingText="Currently Available Courses"
-                  ImageSrc={course}
-                  count={6}
-                  bgColor={"#0DAE75"}
-                />
+                {INFO_CARD_DATA.map((info, i) => (
+                  <InfoCard
+                    key={i}
+                    heading={info.heading}
+                    image={info.image}
+                    count={info.count}
+                    bg={info.bg}
+                  />
+                ))}
               </ChakraBox>
             </ChakraBox>
           </ChakraBox>
@@ -186,6 +208,7 @@ export default function Home() {
               initial={
                 isLargerThanLg && { rotate: 0, translate: "-50%", opacity: 0 }
               }
+              // @ts-ignore
               whileInView={
                 isLargerThanLg && {
                   opacity: [0.3, 0.85, 1],
@@ -210,6 +233,7 @@ export default function Home() {
               width={{ xs: "100vw", lg: "50vw" }}
               paddingX={5}
               initial={isLargerThanLg && { translate: "-50%" }}
+              // @ts-ignore
               whileInView={
                 isLargerThanLg && { translate: ["-50%", "-0.1%", 0] }
               }
@@ -244,11 +268,11 @@ export default function Home() {
               >
                 Students in this brand-new type of curriculum will learn how to
                 make money and increase exports in the classroom and will be
-                able to do so within six months of the program's start. It
+                able to do so within six months of the program&apos;s start. It
                 resembles a hybrid of a business venture and an educational
                 project. With a unique blend of business and educational
                 elements. Students will begin applying these skills within six
-                months of the program's start
+                months of the program&apos;s start
               </Text>
             </ChakraBox>
           </ChakraBox>
@@ -268,8 +292,8 @@ export default function Home() {
             <Text textAlign={"center"} marginX={8} marginTop={2}>
               &quot;The Only Way Pakistan Can Get Out of the Current Financial
               Difficulties is By Increasing Software Exports&quot; <br />
-              &quot;Empowering our nation's IT industry to export $1 billion and
-              beyond.&quot;
+              &quot;Empowering our nation&apos;s IT industry to export $1
+              billion and beyond.&quot;
             </Text>
 
             <ChakraBox
@@ -335,8 +359,9 @@ export default function Home() {
             width={"75vw"}
             marginY={5}
             marginX={"auto"}
-            initial={{ opacity: 0, scaleY: 0 }}
-            whileInView={{ opacity: 1, scaleY: 1 }}
+            initial={{ opacity: 0, translateY: "-20vh" }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            //@ts-ignore
             transition={{ duration: 0.5 }}
           >
             <iframe

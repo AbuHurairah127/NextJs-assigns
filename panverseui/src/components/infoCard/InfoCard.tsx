@@ -1,6 +1,7 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import Image, { type StaticImageData } from "next/image";
 import { motion } from "framer-motion";
+import { InfoTypes } from "@/app/page";
 
 type Props = {
   headingText: string;
@@ -8,13 +9,13 @@ type Props = {
   count: number;
   bgColor: string;
 };
-const InfoCard = (props: Props) => {
+const InfoCard = (props: InfoTypes) => {
   return (
     <Box
       as={motion.div}
       width={["80vw", "40vw", "20vw", "20vw"]}
       height={225}
-      bgColor={props.bgColor}
+      bgColor={props.bg}
       color={"white"}
       borderRadius={13}
       padding={5}
@@ -35,14 +36,9 @@ const InfoCard = (props: Props) => {
         borderRadius: "100%",
       }}
     >
-      <Image src={props.ImageSrc} alt={"img"} width={56}></Image>
+      <Image src={props.image} alt={"img"} width={56}></Image>
 
-      <Heading>
-        {props.count}
-
-        {"+"}
-      </Heading>
-      <Text textAlign="center">{props.headingText}</Text>
+      <Text textAlign="center">{props.heading}</Text>
     </Box>
   );
 };
