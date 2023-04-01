@@ -83,6 +83,7 @@ export default function Home() {
       <Box overflowX={"hidden"}>
         <Hero />
         {/* Hero Section */}
+        {/* @ts-ignore */}
         <Flex
           height={{ lg: "90vh" }}
           flexDirection={{ base: "column", md: "row" }}
