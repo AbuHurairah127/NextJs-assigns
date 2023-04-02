@@ -16,37 +16,44 @@ import hiraKhan from "../../assets/hiraKhan.png";
 import aliRazzaq from "../../assets/aliRazzaq.png";
 import zeeshanHanif from "../../assets/zeeshanhainf.png";
 import NextImage from "next/image";
+import { ChakraBox } from "../page";
 const page = () => {
   const mainFaculty = [
     {
       name: "Zia Khan",
       Desc: "Web 3, DeFi, Cloud and Metaverse Architect | Tokenomist and Metanomist | CEO Panacloud | Volunteer COO Presidential Initiative for AI and Computing",
       Img: ziaKhan,
+      delay: 0,
     },
     {
       name: "Daniyal Naghori",
       Desc: "CEO at PIAIC, CTO at TravelclubIQ and Founder, Director, CEO at ProStack Ltd",
       Img: daniyalNaghori,
+      delay: 0.2,
     },
     {
       name: "Hira Khan",
       Desc: "Director at the Women Empowerment Div. of the Presidential Initiative for Artificial Intelligence & Computing (PIAIC)",
       Img: hiraKhan,
+      delay: 0.4,
     },
     {
       name: "Adil Altaf",
       Desc: "Director at the Women Empowerment Div. of the Presidential Initiative for Artificial Intelligence & Computing (PIAIC)",
       Img: adilAltaf,
+      delay: 0.6,
     },
     {
       name: "Zeeshan Hanif",
       Desc: "Head of Software Development at Panacloud Pvt Ltd",
       Img: zeeshanHanif,
+      delay: 0.8,
     },
     {
       name: "Ali Razzaq",
       Desc: "Web 3.0 enthusiast | Playing with Raspberry Pi these days.",
       Img: aliRazzaq,
+      delay: 1,
     },
   ];
   return (
@@ -57,8 +64,9 @@ const page = () => {
       <Flex justifyContent={"space-evenly"} flexWrap={"wrap"} marginY={"15px"}>
         {mainFaculty.map((member, i) => {
           return (
-            <Flex
+            <ChakraBox
               key={i}
+              display={"flex"}
               flexDirection={"column"}
               justifyContent={"space-between"}
               alignItems={"center"}
@@ -70,6 +78,10 @@ const page = () => {
               p={6}
               textAlign={"center"}
               marginBottom={10}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              // @ts-ignore
+              transition={{ duration: 0.5, delay: member.delay }}
             >
               <NextImage
                 src={member.Img}
@@ -120,7 +132,7 @@ const page = () => {
                   #metaverse
                 </Badge>
               </Stack>
-            </Flex>
+            </ChakraBox>
           );
         })}
       </Flex>
