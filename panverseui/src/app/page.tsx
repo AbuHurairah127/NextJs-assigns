@@ -21,7 +21,7 @@ import { motion, isValidMotionProp, useScroll } from "framer-motion";
 import Link from "next/link";
 import economy from "./../assets/economy.json";
 import { StaticImageData } from "next/image";
-export const ChakraBox = chakra(motion.div, {
+const ChakraBox = chakra(motion.div, {
   /**
    * Allow motion props and non-Chakra props to be forwarded.
    */

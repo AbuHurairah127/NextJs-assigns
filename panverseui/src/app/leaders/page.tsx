@@ -8,6 +8,8 @@ import {
   Stack,
   Badge,
   Flex,
+  chakra,
+  shouldForwardProp,
 } from "@chakra-ui/react";
 import ziaKhan from "../../assets/ziaKhan.png";
 import daniyalNaghori from "../../assets/Daniyal-Naghori.png";
@@ -16,7 +18,14 @@ import hiraKhan from "../../assets/hiraKhan.png";
 import aliRazzaq from "../../assets/aliRazzaq.png";
 import zeeshanHanif from "../../assets/zeeshanhainf.png";
 import NextImage from "next/image";
-import { ChakraBox } from "../page";
+import { isValidMotionProp, motion } from "framer-motion";
+const ChakraBox = chakra(motion.div, {
+  /**
+   * Allow motion props and non-Chakra props to be forwarded.
+   */
+  shouldForwardProp: (prop) =>
+    isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 const page = () => {
   const mainFaculty = [
     {
