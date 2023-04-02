@@ -1,8 +1,6 @@
 import { BookType } from "@/app/page";
 import React from "react";
 const BooksTable = ({ books }: { books: BookType[] }) => {
-  console.log(books);
-
   return (
     <div className="relative p-5 md:w-3/4 overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rounded-lg overflow-hidden">

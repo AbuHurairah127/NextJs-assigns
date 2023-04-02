@@ -1,4 +1,6 @@
+import ToastWrapper from "@/components/toastWrapper/ToastWrapper";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Book Store",
@@ -12,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastWrapper />
+      </body>
     </html>
   );
 }
