@@ -1,13 +1,12 @@
 "use client";
 import { ReactNode } from "react";
 import Image from "next/image";
-import NextLink from "next/link";
 import { motion } from "framer-motion";
 import {
   Box,
   Flex,
   HStack,
-  Link,
+  // Link,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -20,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "./../../assets/red-p-logo-text_dao_croped.png";
+import Link from "next/link";
 const Links = [
   { name: "About", path: "/about" },
   { name: "Leaders", path: "/leaders" },
@@ -31,16 +31,20 @@ type Props = {
 };
 const NavLink = (props: Props) => (
   <Link
-    as={NextLink}
-    px={2}
-    py={1}
-    transition="all"
-    transitionDuration={"0.3s"}
-    _hover={{
-      textDecoration: "none",
-      textColor: "red.500",
-      fontWeight: 700,
-      scale: "125%",
+    // as={NextLink}
+    // px={2}
+    // py={1}
+    // transition="all"
+    // transitionDuration={"0.3s"}
+    // _hover={{
+    //   textDecoration: "none",
+    //   textColor: "red.500",
+    //   fontWeight: 700,
+    //   scale: "125%",
+    // }}
+    style={{
+      paddingLeft: 5,
+      paddingRight: 5,
     }}
     href={props.path}
   >
@@ -92,18 +96,18 @@ export default function Simple() {
           </HStack>
           <Flex alignItems={"center"}>
             <Link
-              borderRadius={100}
-              paddingX="18px"
-              paddingY={"8px"}
-              bgGradient="linear(to-t, red.700, red.500)"
-              color={"white"}
-              fontSize={16}
-              fontWeight={500}
-              shadow={"0px 0px 15px red"}
-              _hover={{
-                bgGradient: "linear(to-tr, red.700, red.500)",
+              // borderRadius={100}
+
+              // as={NextLink}
+              style={{
+                paddingLeft: 15,
+                paddingRight: 15,
+                background: "linear-gradient(to bottom,#9d0208,#d00000)",
+                color: "white",
+                paddingTop: 8,
+                paddingBottom: 8,
+                borderRadius: 10,
               }}
-              as={NextLink}
               href="https://portal.piaic.org/"
             >
               Apply Now
