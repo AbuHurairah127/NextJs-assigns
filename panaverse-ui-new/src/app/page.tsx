@@ -1,5 +1,10 @@
+import Hero from "@/section/hero/Hero";
 import Image from "next/image";
 
 export default function Home() {
-  return <main className="bg-red-300">lorem</main>;
+  return (
+    <main className="overflow-x-hidden">
+      <Hero />
+    </main>
+  );
 }
