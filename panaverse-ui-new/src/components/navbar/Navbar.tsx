@@ -48,8 +48,8 @@ const Navbar = () => {
       <div
         className={
           isNavbar
-            ? "lg:hidden fixed left-0 top-20  transition-transform  w-screen z-0 bg-white flex flex-col items-center"
-            : "lg:hidden fixed left-0 top-0 transition-transform -translate-y-full duration-500 w-screen bg-white flex flex-col items-center"
+            ? "lg:hidden fixed left-0 top-20  transition-transform duration-300 ease-linear w-screen z-0 bg-white flex flex-col items-center"
+            : "lg:hidden fixed left-0 top-0 transition-transform -translate-y-full duration-300 ease-linear w-screen bg-white flex flex-col items-center"
         }
       >
         {" "}
