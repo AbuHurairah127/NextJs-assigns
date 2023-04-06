@@ -1,4 +1,5 @@
 import StatsCard from "@/components/statsCard/StatsCard";
+import { data } from "@/data/StatsCardData";
 import React from "react";
 
 const Stats = () => {
@@ -12,11 +13,10 @@ const Stats = () => {
         this dynamic and thriving network, working together to create a brighter
         future.
       </p>
-      <div className="flex justify-around flex-wrap">
-        <StatsCard />
-        <StatsCard />
-        <StatsCard />
-        <StatsCard />
+      <div className="flex justify-evenly flex-wrap mt-14 gap-8 lg:gap-0">
+        {data.map((stat, i) => (
+          <StatsCard key={i} data={stat} />
+        ))}
       </div>
     </div>
   );
