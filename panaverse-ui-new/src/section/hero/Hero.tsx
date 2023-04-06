@@ -3,7 +3,7 @@ const Hero = () => {
   return (
     <div className="min-h-[90vh] md:min-h-[50vh] lg:min-h-screen w-screen bg-hero-pattern bg-cover bg-center flex flex-col lg:flex-row px-5 lg:px-20">
       <div className="lg:w-[50vw] flex flex-col justify-center gap-10 relative mt-10">
-        <h1 className="text-white text-4xl font-bold tracking-wide">
+        <h1 className="text-white text-4xl font-bold tracking-wide underline-transition">
           Start Your Developer Journey in the Web 3.0 and Virtual Universe
           Arena.
         </h1>

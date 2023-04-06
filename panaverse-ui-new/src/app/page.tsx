@@ -8,6 +8,11 @@ export default function Home() {
       <Hero />
       <Stats />
       <AboutProgramSummary />
+      <div>
+        <h1 className="text-4xl text-center font-bold tracking-wide underline-transition">
+          Achieve Your Goals
+        </h1>
+      </div>
     </main>
   );
 }
