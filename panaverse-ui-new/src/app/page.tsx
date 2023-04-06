@@ -4,7 +4,7 @@ import Stats from "@/section/stats/Stats";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-hidden">
       <Hero />
       <Stats />
       <AboutProgramSummary />
