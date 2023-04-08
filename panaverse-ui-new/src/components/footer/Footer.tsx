@@ -6,8 +6,12 @@ const Footer = () => {
       <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2023{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
-            Flowbite™
+          <a
+            href="https://portfolio-v2-abuhurairah127.vercel.app/"
+            target="_blank"
+            className="hover:underline"
+          >
+            Abu Hurairah
           </a>
           . All Rights Reserved.
         </span>

@@ -108,8 +108,8 @@ const About = () => {
         <h1 className="text-4xl font-bold w-fit text-center underline-transition">
           Strategic Collaborators
         </h1>{" "}
-        <div className="flex justify-center items-center mt-8">
-          <Image src={panacloudLogo} alt={""} className="w-32 h-20 mr-12" />
+        <div className="flex justify-center items-center mt-8 flex-col lg:flex-row">
+          <Image src={panacloudLogo} alt={""} className="w-32 h-20 lg:mr-12" />
           <Image src={saylaniLogo} alt={""} />
         </div>
       </div>
