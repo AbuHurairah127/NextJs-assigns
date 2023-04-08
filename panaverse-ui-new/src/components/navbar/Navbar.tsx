@@ -29,13 +29,7 @@ const Navbar = () => {
             <NavLinks key={i} name={link.name} path={link.path} />
           ))}
         </nav>
-        <a
-          className={
-            "bg-red-700 text-white py-4 px-12 rounded-md text-lg cursor-pointer transition-all duration-500 hover:bg-red-600 hidden lg:block"
-          }
-        >
-          Start Your Journey
-        </a>
+        <a className={"button hidden lg:block"}>Start Your Journey</a>
         <div className="lg:hidden z-50">
           <Hamburger
             toggled={isNavbar}

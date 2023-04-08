@@ -3,6 +3,7 @@ import teacher from "./../assets/teachers.png";
 import classroom from "./../assets/classrooms.png";
 import student from "./../assets/students.png";
 import course from "./../assets/courses.png";
+import ninjaDev from "./../assets/ninjaDev.png";
 export type StatsDataType = {
   title: string;
   img: StaticImageData;
@@ -38,5 +39,12 @@ export const data: StatsDataType[] = [
     count: 8,
     blobColor: "#669bbc",
     borderRadius: "42% 58% 67% 33% / 85% 79% 21% 15%   ",
+  },
+  {
+    title: "Our Ninja Developers",
+    img: ninjaDev,
+    count: 8,
+    blobColor: "#ffb703",
+    borderRadius: "42% 73% 67% 78% / 85% 79% 49% 15%   ",
   },
 ];
