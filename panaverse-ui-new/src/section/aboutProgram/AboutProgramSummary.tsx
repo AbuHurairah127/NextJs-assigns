@@ -8,7 +8,7 @@ const AboutProgramSummary = () => {
           Get a glimpse into our program
         </span>
       </div>
-      <div className="flex flex-col lg:flex-row-reverse items-center justify-around">
+      <div className="flex flex-col lg:flex-row items-center justify-around">
         <div className="lg:w-[50vw]">
           <LeftSection />{" "}
         </div>
