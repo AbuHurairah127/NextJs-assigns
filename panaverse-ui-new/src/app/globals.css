@@ -5,6 +5,11 @@
   background-image: url(./../assets/herobg.png);
 }
 @layer base {
+  /* `*` is a universal selector that selects all elements on the page. The CSS rule `outline: 1px
+  solid lime !important;` adds a lime green outline to all elements on the page, and the
+  `!important` keyword ensures that this rule takes precedence over any other conflicting rules.
+  This is often used as a debugging tool to help visualize the layout of a page and identify any
+  issues with element positioning or sizing. */
   /* * {
     outline: 1px solid lime !important;
   } */
