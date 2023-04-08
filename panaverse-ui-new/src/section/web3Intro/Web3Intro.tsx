@@ -10,7 +10,7 @@ const Web3Intro = () => {
       </h1>
       <div className="flex">
         <p className="text-white p-5">
-          Web3.0, also known as the decentralized web, is the next iteration of
+          Web 3.0, also known as the decentralized web, is the next iteration of
           the internet that promises to revolutionize the way we interact and
           transact online. Unlike the current Web 2.0, which is largely
           centralized and controlled by a few dominant companies, Web3.0 is
