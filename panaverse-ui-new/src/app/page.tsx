@@ -4,6 +4,7 @@ import Stats from "@/section/stats/Stats";
 import processBg from "./../assets/processbg.png";
 import Image from "next/image";
 import Web3Intro from "@/section/web3Intro/Web3Intro";
+import MetaverseIntro from "@/section/metaverseIntro/MetaverseIntro";
 
 export default function Home() {
   return (
@@ -82,12 +83,12 @@ export default function Home() {
           </div>
           <div className="lg:w-[50vw] h-80 lg:min-h-[600px] flex justify-center items-center">
             {" "}
-            <div className="rounded-full lg:h-[500px] lg:w-[500px] absolute flex items-center justify-center">
+            <div className="rounded-full lg:h-[500px] lg:w-[500px] absolute flex items-center justify-center overflow-hidden">
               {" "}
               <Image
                 src={processBg}
                 alt=""
-                className="absolute right-0 rotateBg"
+                className="absolute right-0 rotateBg overflow-x-hidden"
               />
               <div className="w-72 h-72 border-2 rounded-full flex items-center justify-center">
                 <p className="w-56 h-56 text-center rounded-full">
@@ -101,6 +102,7 @@ export default function Home() {
         </div>
       </div>
       <Web3Intro />
+      <MetaverseIntro />
     </main>
   );
 }

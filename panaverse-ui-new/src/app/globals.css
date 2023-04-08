@@ -5,9 +5,9 @@
   background-image: url(./../assets/herobg.png);
 }
 @layer base {
-  * {
+  /* * {
     outline: 1px solid lime !important;
-  }
+  } */
 }
 @layer components {
   .underline-transition {
