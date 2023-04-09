@@ -6,11 +6,20 @@ import { Links } from "@/data/NavlinksData";
 import React, { useState } from "react";
 import { Fade as Hamburger } from "hamburger-react";
 
-const NavLinks = ({ name, path }: { name: string; path: string }) => {
+const NavLinks = ({
+  name,
+  path,
+  setIsNavbar,
+}: {
+  name: string;
+  path: string;
+  setIsNavbar: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <Link
       href={path}
       className="inline text-xl uppercase  transition-all duration-1000 hover:text-red-600 hover:font-bold"
+      onClick={() => setIsNavbar(false)}
     >
       {name}
     </Link>
@@ -24,11 +33,21 @@ const Navbar = () => {
     <>
       <div className="h-20 flex justify-between items-center px-5 lg:px-20 z-50 bg-white">
         <Link href={"/"} className="cursor-pointer">
-          <Image src={logo} alt="Panaverse DAO logo" className="w-11 h-11" />
+          <Image
+            src={logo}
+            alt="Panaverse DAO logo"
+            className="w-11 h-11"
+            onClick={() => setIsNavbar(false)}
+          />
         </Link>
         <nav className="hidden  w-[50vw] lg:flex justify-between">
           {Links.map((link, i) => (
-            <NavLinks key={i} name={link.name} path={link.path} />
+            <NavLinks
+              key={i}
+              name={link.name}
+              path={link.path}
+              setIsNavbar={setIsNavbar}
+            />
           ))}
         </nav>
         <a
@@ -50,15 +69,19 @@ const Navbar = () => {
       <div
         className={
           isNavbar
-            ? "lg:hidden fixed left-0 top-20  transition-transform duration-300 ease-linear w-screen z-0 bg-white flex flex-col items-center"
-            : "lg:hidden fixed left-0 top-0 transition-transform -translate-y-full duration-300 ease-linear w-screen bg-white flex flex-col items-center"
+            ? "lg:hidden absolute left-0 top-20  transition-transform duration-300 ease-linear w-screen z-10 bg-white flex flex-col items-center"
+            : "lg:hidden absolute left-0 top-0 transition-transform -translate-y-full duration-300 ease-linear w-screen bg-white flex flex-col items-center"
         }
       >
         {" "}
         <nav className="flex flex-col  justify-between">
           {Links.map((link, i) => (
             <div className="py-3 text-center border w-screen" key={i}>
-              <NavLinks name={link.name} path={link.path} />
+              <NavLinks
+                name={link.name}
+                path={link.path}
+                setIsNavbar={setIsNavbar}
+              />
             </div>
           ))}
         </nav>

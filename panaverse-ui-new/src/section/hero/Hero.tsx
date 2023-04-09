@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <div className="min-h-[90vh] md:min-h-[50vh] lg:min-h-screen w-screen bg-hero-pattern bg-cover bg-center flex flex-col lg:flex-row px-5 lg:px-20">
+
       <div className="lg:w-[50vw] flex flex-col justify-center gap-10 relative mt-10">
         <motion.h1
           className="text-white text-4xl font-bold tracking-wide underline-transition"
           initial={{ translateY: "-50", opacity: 0 }}
           animate={{ translateY: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-        >
+          >
           Start Your Developer Journey in the Web 3.0 and Virtual Universe
           Arena.
         </motion.h1>
@@ -31,14 +32,14 @@ const Hero = () => {
             initial={{ translateX: 200 }}
             animate={{ translateX: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
-          >
+            >
             Certified Web 3.0 and Metaverse Developer. A One and Quarter Years
             Panaverse DAO Earn as you Learn Program Getting Ready for the Next
             Generation of the Internet. Explore the new generation of internet
             with Panaverse.
           </motion.p>
         </motion.div>
-      </div>
+            </div>
       <div className="relative hidden lg:block">
         <h1 className="stroke text-[10vw] opacity-40 absolute lg:-left-56 top-72 cursor-pointer transition-all duration-1000 hover:opacity-100 hover:scale-125 z-0">
           Panaverse
