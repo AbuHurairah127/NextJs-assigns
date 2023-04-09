@@ -49,8 +49,8 @@ const Navbar = () => {
         {" "}
         <nav className="flex flex-col  justify-between">
           {Links.map((link, i) => (
-            <div className="py-3 text-center border w-screen">
-              <NavLinks key={i} name={link.name} path={link.path} />
+            <div className="py-3 text-center border w-screen" key={i}>
+              <NavLinks name={link.name} path={link.path} />
             </div>
           ))}
         </nav>

@@ -42,8 +42,8 @@ export default function Home() {
                   href="https://content.techgig.com/hiring/top-5-metaverse-jobs-that-will-rule-the-future-of-tech-industry/articleshow/87581325.cms"
                   className="link"
                 >
-                  Top 5 'Metaverse' jobs that will rule the future of tech
-                  industry
+                  Top 5 &apos;Metaverse&apos; jobs that will rule the future of
+                  tech industry
                 </a>
               </li>
               <li>
@@ -94,7 +94,8 @@ export default function Home() {
                 <p className="w-56 h-56 text-center rounded-full">
                   First learn the development. Think, Design the software and
                   then Develop. Do marketing and Earn in Dollars to change the
-                  fortune of your life and family and Pakistan's economic state.
+                  fortune of your life and family and Pakistan&apos;s economic
+                  state.
                 </p>
               </div>
             </div>
