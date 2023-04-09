@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import metaverse from "./../../assets/metaverse.png";
+import { motion } from "framer-motion";
 const MetaverseIntro = () => {
   return (
     <div className="flex justify-center items-center flex-col pt-8">
@@ -12,10 +13,26 @@ const MetaverseIntro = () => {
           <Image src={metaverse} alt={""} className="w-10/12 lg:w-full" />
         </div>
         <div className="lg:w-[50vw] flex flex-col justify-center items-center lg:h-screen mt-8 lg:mt-0">
-          <h1 className="text-5xl underline-transition w-fit mx-8">
+          <motion.h1
+            className="text-5xl underline-transition w-fit mx-8"
+            initial={{ translateX: 500, opacity: 0 }}
+            whileInView={{
+              translateX: 0,
+              opacity: 1,
+            }}
+            transition={{ duration: 0.7 }}
+          >
             The Possibilities are Beyond Your Imagination
-          </h1>
-          <p className="p-5 lg:p-8">
+          </motion.h1>
+          <motion.p
+            className="p-5 lg:p-8"
+            initial={{ translateX: 500, opacity: 0 }}
+            whileInView={{
+              translateX: 0,
+              opacity: 1,
+            }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
             The metaverse refers to a virtual universe of interconnected,
             immersive, and interactive 3D environments that are created and
             sustained by advanced technologies such as virtual reality (VR),
@@ -30,7 +47,7 @@ const MetaverseIntro = () => {
             commerce, the metaverse is poised to transform every aspect of our
             lives and create new opportunities for innovation, creativity, and
             collaboration.
-          </p>
+          </motion.p>
         </div>
       </div>
     </div>
