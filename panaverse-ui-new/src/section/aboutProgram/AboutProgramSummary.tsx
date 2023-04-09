@@ -1,5 +1,6 @@
 import React from "react";
 import LeftSection from "./LeftSection";
+import Link from "next/link";
 const AboutProgramSummary = () => {
   return (
     <div className="p-5 bg-[#10002b]">
@@ -27,7 +28,9 @@ const AboutProgramSummary = () => {
               program&apos;s start.
             </p>
           </div>
-          <button className="button mt-5">Read More</button>
+          <button className="button mt-12">
+            <Link href={"/programStructure"}>Read More</Link>
+          </button>
         </div>
       </div>
     </div>

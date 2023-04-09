@@ -23,13 +23,21 @@ const Navbar = () => {
   return (
     <>
       <div className="h-20 flex justify-between items-center px-5 lg:px-20 z-50 bg-white">
-        <Image src={logo} alt="Panaverse DAO logo" className="w-11 h-11" />
+        <Link href={"/"} className="cursor-pointer">
+          <Image src={logo} alt="Panaverse DAO logo" className="w-11 h-11" />
+        </Link>
         <nav className="hidden  w-[50vw] lg:flex justify-between">
           {Links.map((link, i) => (
             <NavLinks key={i} name={link.name} path={link.path} />
           ))}
         </nav>
-        <a className={"button hidden lg:block"}>Start Your Journey</a>
+        <a
+          href={"https://portal.piaic.org/"}
+          target="_blank"
+          className={"button hidden lg:block"}
+        >
+          Start Your Journey
+        </a>
         <div className="lg:hidden z-50">
           <Hamburger
             toggled={isNavbar}
