@@ -1,23 +1,39 @@
+"use client";
 import StatsCard from "@/components/statsCard/StatsCard";
 import { data } from "@/data/StatsCardData";
 import React from "react";
-
+import { motion } from "framer-motion";
 const Stats = () => {
   return (
     <div className="min-h-[50vh] py-8">
-      <h1 className="font-bold text-5xl text-center">
+      <motion.h1
+        className="font-bold text-5xl text-center"
+        initial={{ opacity: 0, translateY: 300 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.65 }}
+      >
         We Are Proud to Tell You
-      </h1>
-      <p className="text-lg text-center tracing-widest">
+      </motion.h1>
+      <motion.p
+        className="text-lg text-center tracing-widest"
+        initial={{ opacity: 0, translateY: 300 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.7 }}
+      >
         Our community, teachers, and students are all essential components of
         this dynamic and thriving network, working together to create a brighter
         future.
-      </p>
-      <div className="flex justify-evenly flex-wrap mt-14 gap-8 lg:gap-0">
+      </motion.p>
+      <motion.div
+        className="flex justify-evenly flex-wrap mt-14 gap-8 lg:gap-0"
+        initial={{ opacity: 0, translateY: 300 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.7 }}
+      >
         {data.map((stat, i) => (
           <StatsCard key={i} data={stat} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

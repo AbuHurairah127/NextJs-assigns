@@ -2,6 +2,7 @@ import React from "react";
 import teacher from "./../../assets/teachers.png";
 import Image from "next/image";
 import { StatsDataType } from "@/data/StatsCardData";
+import { motion } from "framer-motion";
 const StatsCard = ({ data }: { data: StatsDataType }) => {
   return (
     <div

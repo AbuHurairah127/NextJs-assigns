@@ -1,6 +1,7 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="min-h-screen flex justify-center items-center flex-col bg-gray-50">
       <h1 className="text-center text-4xl w-fit underline-transition">
@@ -14,4 +15,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
